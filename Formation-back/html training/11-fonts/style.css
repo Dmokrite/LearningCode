@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@font-face{
+    font-family: "Roxanne";
+    src: url(./font/Mooli-Regular.ttf) format("truetype");
+}
+
+
+body{
+    font-family: 'Roxanne', sans-serif;
+}
+
+/*valeur px(pixel), pt(point), %(pourcentage), em, vw(viewportweight),vh(viewportheight), rem(ratiox2oux4 de la taille initial du html)*/

@@ -1,0 +1,16 @@
+@import "variable";
+
+body {
+  background-color: #f9f9f9;
+  font-family: 'Nunito', sans-serif;
+}
+
+div.container{
+  display: flex;
+  justify-content: space-around;
+  div{
+    width: $width;
+    height: $height;
+    background-color: $background;
+  }
+}

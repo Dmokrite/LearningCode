@@ -1,0 +1,52 @@
+body{
+    background-image: url(Mont-Fuji-.jpg);
+    background-size: cover;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container{
+    width: 500px;
+    padding: 30px;
+    background-color: rgba(142, 238, 206, 0.493);
+    border-radius: 40px;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 100px;
+    font-size: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.39);
+}
+
+p:first-of-type{
+    color: aqua;
+    font-size: 22px;
+}
+
+p:last-of-type{
+    color: aqua;
+    font-size: 16px;
+}
+
+p:nth-of-type(3){
+    font-size: 28px;
+}
+
+p:nth-of-type(even){
+    background-color: rgba(0, 0, 0, 0.521);
+}
+
+button{
+    border-radius: 80px;
+    background-image: url(david-castello-lopes.gif);
+    background-size: cover;
+}
+
+button a{
+    display: block;
+    padding: 100px 70px;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+button:hover{
+    background-image: url(163577820062.jpeg);
+}

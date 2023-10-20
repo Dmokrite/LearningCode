@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.amant-shadow{
+    text-shadow:  10px 10px 10px;
+}
+
+.classic-text{
+    @apply my-4 font-semibold text-lg text-gray-800 italic mx-10 amant-shadow block;
+    background-color: aquamarine;
+}

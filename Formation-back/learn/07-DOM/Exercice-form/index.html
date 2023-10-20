@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="datas.js" defer></script>
+<script src="main.js" defer></script>
+<style>
+     
+    .container {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .left {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        width: 20%;
+        margin-right: 10px;
+        border: 1px solid black;
+    }
+    
+    .left h2 {
+        margin-bottom: 50px;
+        font-size: 25px;
+        padding: 5px;
+        text-decoration: underline;
+        margin-left: 10px;
+    }
+    
+    .left h1 {
+        margin-bottom: 10px;
+        font-size: 28px;
+        text-decoration: underline;
+        margin-left: 10px;
+    }
+
+    .left li {
+        margin-left: 20px;
+        margin-bottom: 35px;
+        width: 60px;
+    }
+
+    .left li:hover {
+        color: chartreuse;
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 2px;
+    }
+    
+    .right {
+        display: none;
+        flex-direction: column;
+        background-color: rgb(255, 255, 255);  
+        width: 80%;
+        border: 1px solid black;
+        padding: 5px;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+        height: 25%;
+        width: 70%;
+        margin: -3px;
+    }
+    
+    .box {
+        width: 100%;
+        border: 0.5px solid black;
+        height: 600px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .box img {
+        object-fit: cover;
+        height: 400px;
+        width: 100%;
+    }
+        
+    .box p {
+        margin: 5px;
+    }
+        
+    .box2 {
+        width: 100%;
+        height: 20%;
+        margin-top: 35px;
+        border: 0.5px solid black;
+    }
+    
+    .box2 h3, p, button {
+        margin-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .box2 p {
+        background-color: rgba(183, 184, 185, 0.178);
+        padding: 2px;
+    }
+
+    .box2 input {
+        margin-left: 15px;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+    }
+
+    .popup-content {
+        background-color: #f7f7f7;
+        margin: 10% auto;
+        padding: 20px;
+        width: 15%;
+        border: 1px solid #888;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+
+    .titlePopUp {
+        margin-left: 45px;
+    }
+
+    #passionDescription {
+        margin-top: 25px;
+    }
+
+    .submit {
+        margin-left: 140px;
+        margin-top: 15px;
+    }
+    
+</style>
+<title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <section class="left">
+            <h1>Exercices des 12 salopards</h1>
+            <div>
+                <h2>Noms</h2>
+                <ul id="friendsList"></ul>
+            </div>
+        </section>
+        <section class="right">
+            <div class="box"></div>
+            <div class="box2"></div>
+        </section>
+        <div class="popup" id="passionPopup">
+            <div class="popup-content">
+                <span class="close" id="closePopup">&times;</span>
+                <h2>Ajouter une Passion</h2>
+                <form id="passionForm">
+                    <div>
+                        <label for="passionTitle" class="titlePopUp">Titre :</label>
+                        <input type="text" id="passionTitle" required>
+                    </div>
+                    <div>
+                        <label for="passionDescription" class="descriptionPopUp">Description :</label>
+                        <textarea id="passionDescription" required></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="submit" id="openPassionPopup">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/assets/js/main.js" defer></script>
+    <title>Exercice 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans">
+  <header class="relative bg-blue-900 text-white border-collapse h-18">
+    <nav class="flex justify-between items-center">
+      <img src="public/logo.png" alt="Logo Peugeot" class="w-24">
+      <ul class="flex space-x-4 mr-3">
+        <li><a href="index.html" class="hover:text-yellow-300">Gamme</a></li>
+        <li><a href="professional" class="hover:text-yellow-300">Professional</a></li>
+        <li><a href="occasions" class="hover:text-yellow-300">Occasions</a></li>
+        <li><a href="financement" class="hover:text-yellow-300">Financement et services</a></li>
+        <li><a href="aprèsVente" class="hover:text-yellow-300">Après-vente</a></li>
+        <li><a href="innovations" class="hover:text-yellow-300">Innovations</a></li>
+        <li><a href="contact.html" class="hover:text-yellow-300 active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="h-96 relative" style="background-image: url(public/peugeot-banner.jpg);">
+        <h1 class="text-white text-xl font-semibold absolute bottom-0 left-0 right-0 ml-72 mb-4">Rejoignez MyPeugeot et vivez <br>
+            l'aventure Peugeot à son maximum !</h1>
+      </div>
+    </section>
+    <section>
+      <div class="ml-64 mr-64 mt-14">
+        <h2 class="text-xl font-semibold mb-4">INSCRIVEZ-VOUS</h2>
+        <p>A vos côtés, nous partageons actualités, concours et exclusivités personnalisées pour une expérience enrichie avec votre Peugeot. Laissez-nous en faire plus pour vous !</p>
+      </div>
+      <div>
+        <form class="flex flex-col mt-6 ml-64 mr-64">
+          <div class="flex">
+            <div class="flex mb-4">
+              <label class="mr-2">
+                <input type="radio" name="genre" value="monsieur" required>
+                        Monsieur
+              </label>
+            </div>
+            <div class="flex mb-4">
+              <label class="mr-2">
+                <input type="radio" name="genre" value="madame" required>
+                        Madame
+              </label>
+            </div>
+            <div class="flex mb-4">
+              <label class="mr-2">
+                <input type="radio" name="genre" value="societe" required>
+                        Société
+              </label>
+            </div>
+          </div>
+          <div>
+            <div class="flex flex-row mb-2 w-full">
+              <div class="flex flex-col mb-2 w-48pct">
+                <label class="mr-2">Nom ★</label>
+                  <input type="text" name="nom" placeholder="Votre nom" class="border border-chartreuse rounded px-2 py-1" required>
+              </div>
+              <div class="flex flex-col mb-2 w-48pct">
+                <label class="ml-6">Prénom ★</label>
+                  <input type="text" name="prenom" placeholder="Maxi-Meuh" class="border border-chartreuse rounded px-2 py-1 ml-6" required>
+              </div>
+            </div>
+            <div class="flex flex-row mb-2">
+              <div class="flex flex-col mb-2 w-48pct">
+                <label class="mr-2">Email ★</label>
+                  <input type="email" name="email" placeholder="Votre email" class="border border-chartreuse rounded px-2 py-1" required>
+              </div>
+              <div class="flex flex-col mb-2 w-48pct">
+                <label for="choix" class="ml-6">Votre Peugeot est ★</label>
+                  <select name="choix" id="choix" class="ml-6 bg-chartreuse">
+                    <option value="option1" selected> ─</option>
+                    <option value="option2">La voiture de Maxhiime</option>
+                    <option value="option3">La voiture de Mascime</option>
+                    <option value="option4">La voiture de Mhasquime</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-row mb-2">
+                <div class="flex flex-col mb-2 w-48pct">
+                  <label class="mr-2">Numéro de châssis ★</label>
+                  <input type="email" name="email" placeholder="Votre email" class="border border-chartreuse rounded px-2 py-1" required>
+                </div>
+                <div class="flex flex-col mb-2 w-48pct">
+                  <label for="choix" class="ml-6">Pays ★</label>
+                  <select name="choix" id="choix" class="ml-6 border border-chartreuse">
+                    <option value="option1" selected>Belgique</option>
+                    <option value="option2">Luxembourg</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="mt-10">
+                  <p class="mb-4">Vos données personnelles seront traitées par Peugeot Belgique Luxembourg, Avenue Bourget 20 boîte 2, 1130 Bruxelles, Belgique, en tant que responsable de traitement, tel que décrit dans la <span><a href="confidentialité" class="text-chartreuse">Déclaration de confidentialité</a></span>, ou vous trouverez plus d'informations sur vos droits liés à la confidentialité et les moyens de nous contacter.</p>
+                  <h4 class="font-bold mb-4">J'aimerais recevoir les informations concernant vos produits et services via e-mail.</h4>
+                  <p class="mb-4">J'accepte que Peugeot Belgique Luxembourg traite mes données personnelles à des fins marketing, d'identification et de reconnaissance, tel que décrit dans la <span><a href="consentement" class="text-chartreuse">Déclaration de consentement</a></span></p>
+                  <p class="mb-4"><span class="font-bold">J'ai le droit de retirer mon consentement à tout moment</span> (pour plus d'informations, veuillez <span><a href="" class="text-chartreuse">cliquer ici</a></span>). Le retrait du consentement n'affecte pas la légalité du traitement fondé sur le consentement avant son retrait.</p>
+                  <p class="mb-8">* Champ obligatoire</p>
+                </div>
+              </div>
+            <div>
+              <button class="bg-blue-700 text-white mb-8 p-2">CONFIRMER VOTRE INSCRIPTION</button>
+              <hr class="-mb-8">
+            </div>
+          </div> 
+        </form>
+      </div>
+    </section>
+    <section>
+      <div class="ml-64 mr-64 mt-20">
+        <h2 class="mb-8">ACCEDEZ A VOS DONNEES</h2>
+        <div class="flex flex-col mb-2 w-48pct">
+          <label class="mr-2 mb-4">Email ★</label>
+            <input type="email" name="email" placeholder="Votre email" class="border border-[#7fff00] rounded px-2 py-1 mb-2" required>
+          <label class="mr-2">* Champ obligatoire</label>
+        </div>
+      </div>
+      <div class="ml-64 mr-64 mt-8">
+        <button class="bg-blue-700 text-white mb-8 p-2">ENVOYEZ-MOI L'EMAIL DE CONSULTATION DE PROFIL</button>
+      </div>
+    </section>
+</main>
+    
+<footer class="bg-gray-200 py-8">
+    <section class="px-4">
+      <div class="flex justify-between px-4">
+        <div class="w-1/3 px-4">
+          <h3 class="text-xl font-semibold border-b-2 border-indigo-500 py-4">BESOIN D'AIDE?</h3>
+          <nav class="mt-4">
+            <a href="contact" class="block text-blue-500 hover:underline">CONTACT</a>
+            <a href="faq" class="block text-blue-500 hover:underline">FAQ</a>
+            <a href="assistance" class="block text-blue-500 hover:underline">ASSISTANCE</a>
+            <a href="pointVente" class="block text-blue-500 hover:underline">POINTS DE VENTE</a>
+          </nav>
+        </div>
+        <div class="container mx-auto flex justify-center">
+          <div class="w-1/3 px-4">
+            <h3 class="text-xl font-semibold border-b-2 border-indigo-500 py-4">GAMME PEUGEOT</h3>
+            <nav class="mt-4">
+              <a href="citadines" class="block text-blue-500 hover:underline">CITADINES</a>
+              <a href="berlines" class="block text-blue-500 hover:underline">BERLINES</a>
+              <a href="suv" class="block text-blue-500 hover:underline">SUV</a>
+              <a href="breaks" class="block text-blue-500 hover:underline">BREAKS</a>
+              <a href="familiales" class="block text-blue-500 hover:underline">FAMILIALES</a>
+              <a href="sportives" class="block text-blue-500 hover:underline">LES SPORTIVES PEUGEOT</a>
+              <a href="electriques" class="block text-blue-500 hover:underline">ELECTRIQUES</a>
+              <a href="utilitaires" class="block text-blue-500 hover:underline">UTILITAIRES</a>
+            </nav>
+          </div>
+        </div>
+        <div class="w-1/3 px-4">
+          <h3 class="text-md font-semibold border-b-2 border-indigo-500 py-4 ">CONTACTER NOTRE SERVICE CLIENT</h3>
+          <a href="telephone" class="block text-blue-500 hover:underline mt-8">078 15 16 15</a>
+            <nav class="mt-8 flex inline-block">
+              <a href="https://www.facebook.com" class="block text-blue-500 hover:underline box-border w-8 h-8 bg-blue-200 mr-1">
+                <img src="public/facebook.svg" alt="facebook" class="w-6 h-6 inline-block items-center ml-1 mt-1">
+              </a>
+              <a href="https://www.youtube.com" class="block text-blue-500 hover:underline box-border w-8 h-8 bg-blue-200 mr-1">
+                <img src="public/youtube.svg" alt="youtube" class="w-6 h-6 inline-block align-middle ml-1 mt-1">
+              </a>
+              <a href="https://www.instagram.com" class="block text-blue-500 hover:underline box-border w-8 h-8 bg-blue-200 mr-1">
+                <img src="public/instagram.svg" alt="instagram" class="w-6 h-6 inline-block align-middle ml-1 mt-1">
+              </a>
+              <a href="https://www.linkedin.com" class="block text-blue-500 hover:underline box-border w-8 h-8 bg-blue-200 mr-1">
+                <img src="public/linkedin.svg" alt="linkedin" class="w-6 h-6 inline-block align-middle ml-1 mt-1">
+              </a>
+            </nav>
+          </div>
+        </div>
+    </section>
+    <section class="inline-block flex flex-wrap justify-center bg-yellow">
+      <div class="w-48pct justify-center space-x-4 mt-8 bg-blue-500 px-4">
+        <div class="px-4 h-13 text-center">
+          <h2 class="text-md text-white py-1.5">MARQUE ET TECHNOLOGIE</h2>
+        </div>
+      </div>
+      <div class="w-48pct flex justify-center space-x-4 mt-8 bg-gray-800 px-4">
+        <div class="px-4 text-center">
+          <h2 class="text-md text-white py-1.5">RECEVEZ UNE ESTIMATION DE REPRISE</h2>
+       </div>
+      </div>
+    </section>
+      <div class="px-4 flex justify-center mt-8">
+        <a href="informations" class="hover:text-black text-blue-500 hover:underline border-r-2 border-indigo-500 px-4">INFORMATIONS LEGALES</a>
+        <a href="confidential" class="hover:text-black text-blue-500 hover:underline border-r-2 border-indigo-500 px-4">POLITIQUE DE CONFIDENTIALITE</a>
+        <a href="cookies" class="hover:text-black text-blue-500 hover:underline border-r-2 pl-2 border-indigo-500 px-4">COOKIES</a>
+        <a href="legales" class="hover:text-black text-blue-500 hover:underline border-r-2 border-indigo-500 px-4">MENTIONS LEGALES DONNEES PERSONELLES</a>
+        <a href="sponsor" class="hover:text-black text-blue-500 hover:underline px-4">SPONSORING</a>
+      </div>  
+</footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="javascript:void()">
+        <div>
+            <label for="nom">Nom:</label>
+            <input type="text" name="nom-de-famille" id="nom" placeholder="Entrez vôtre nom" value="Mark">
+            <input type="number">
+            <input type="color" name="" id="">
+            <input type="time">
+            <input type="date">
+            <input type="email">
+            <input type="password" name="" id="">
+        </div>
+        <div>
+            <label for="isNotCool">Je ne valide pas que Dragon Ball Evolution sois le meilleur film of all times</label>
+            <input type="checkbox" name="isNotCoolMovie" id="isNotCool">
+        </div>
+        <div>
+            <h2>Ton animal favoris</h2>
+            <input type="radio" name="animal" id="chat">
+            <label for="chat">chat miaou</label>
+            <input type="radio" name="animal" id="chien">
+            <label for="chien">waf</label>
+        </div>
+        <div>
+            <label for="text">Mes remarques sur le film Dragon Ball Evolution</label>
+            <br>
+            <br>
+            <br>
+            <textarea name="monTexte" id="text" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <h2>Choisi une ou tes couleurs favorites</h2>
+            <select name="color" id="color" multiple>
+                <option value="default" selected disabled>Choisissez une couleur</option>
+                <option value="aquamarine">Aquamarine</option>
+                <option value="blue">Blue</option>
+                <option value="grey">Grey</option>
+                <optgroup label="purple">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="yellow">Yellow</option>
+                </optgroup>
+            </select>
+        </div>
+        <button type="submit">Envoyer</button>
+        <button type="reset">Annuler</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.title{
+    font-size: 53px;
+    color: #fff;
+    font-style: italic;
+    text-transform: uppercase;
+    text-decoration: underline wavy #54b4da;
+    background-color: aqua;
+}
+
+.title2{
+    font-size: 38px;
+    text-decoration: underline wavy #54b4da;
+}
+
+#list1{
+    list-style-type: lower-latin;
+    margin: 30px 10px;
+    background-color: #54b4da;
+    color: #fff;
+}
+
+#list2{
+    list-style-type: square;
+    margin: 30px 10px;
+    background-color: #54b4da;
+    color: #fff;
+}

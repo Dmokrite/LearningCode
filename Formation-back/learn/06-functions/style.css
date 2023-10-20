@@ -1,0 +1,9 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    color: gray;
+    text-decoration: underline;
+}

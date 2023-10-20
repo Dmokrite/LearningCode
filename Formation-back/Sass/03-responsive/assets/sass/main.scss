@@ -1,0 +1,56 @@
+@import "variable";
+
+body {
+  background-color: #f9f9f9;
+  font-family: 'Nunito', sans-serif;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  & > div{
+    width: $global_size;
+    display: flex;
+    flex-direction: column;
+    img{
+      width: 100%;
+      height: $global_size;
+      object-fit: cover;
+    }
+    div{
+      width: 100%;
+      height: $global_size;
+      padding: 15px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &:nth-of-type(odd){
+      div{
+        background-color: $color_primary;
+      }
+    }
+    &:nth-of-type(even){
+      flex-direction: column-reverse;
+      div{
+        background-color: $color_secondary;
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    align-items: center;
+    flex-direction: column;
+    & > div{
+      width: 600px;
+      &:nth-of-type(even){
+      flex-direction: column;  
+      }
+    }
+  }
+  @media screen and (max-width: 768px){
+    & > div{
+      width: 400px;
+    }
+  }
+}

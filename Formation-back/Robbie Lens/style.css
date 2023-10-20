@@ -1,0 +1,421 @@
+body {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1em;
+    background-color: #1f2039;
+  }
+
+  header, footer {
+    background-color: white;
+    padding: 20px 50px 20px 50px;
+  }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #f9f8ff;
+}
+
+
+ 
+h1 {
+    font-size: 3.5em;
+    color: #A5B4FC;
+    font-family: 'Monserrat', sans-serif ;
+  }
+
+h2 {
+    color: #f9f8ff;
+  }
+
+  p, li {
+  font-size: 1.1em;
+  color: #f9f8ff;
+  font-family: 'Manrope';
+}
+
+em {
+    color: #a5b4fc;
+    font-style: normal;
+  }
+
+.logo {
+    background-color: #ffffff;
+  }
+
+.lien {
+    background-color: #a5b4fc;
+    color: white;
+    background: linear-gradient(#e3eae3, #6675a9);
+    border-radius: 50px;
+    margin-left: 50px;
+    width: 20%;
+    padding: 10px;
+  }
+
+  .lien:hover {
+    background: linear-gradient(#696484, #8788ba);
+    text-decoration: none;
+  }
+
+  .link:hover {
+    opacity: 0.5;
+  }
+
+  section {
+    padding: 80px;
+  }
+
+  .index {
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    margin: auto;
+  }
+
+  .accueil {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+    margin: auto;
+    gap: 45px;
+  }
+  
+  .accueil-photos {
+    background-color: white;
+    padding: 80px;
+  }
+  
+  .accueil-photos h2 {
+    color: #A5B4FC;
+    text-align: center;
+    margin-bottom: 80px;
+    text-decoration: underline;
+  }
+  
+  .accueil-photos div {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
+  .section-contact h2 {
+    color: #a5b4fc;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: auto;
+    color: white;
+  }
+  
+  .form-nom-email {
+    display: flex;
+  }
+  
+  .form-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    background: linear-gradient(#696484, #8788ba);
+    text-align: center;
+  }
+
+  .message {
+    background: linear-gradient(#696484, #8788ba);
+    text-align: center;
+    flex-direction: row;
+  }
+  
+  input,
+  textarea {
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input[type='submit'] {
+    width: 100px;
+    margin: auto;
+    margin-top: 30px;
+  }
+  
+  .project {
+    font-size: 35px;
+  }
+
+  .contenu-1 {
+    text-align: center;
+  }
+
+  .contenu {
+    border-right: 1px solid #8e86b5;
+    border-bottom: 1px solid #8e86b5;
+    padding: 50px;
+    text-align: left;
+  }
+
+  .contenu p {
+    margin-top: 30px;
+  }
+
+  .contenu h2 {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .contenu ul {
+    margin-top: 30px;
+  }
+
+  .list {
+    text-align: center;
+    padding-left: 0;
+    list-style-type: none;
+  }
+
+  .list li::before {
+    content: ".";
+    font-weight: bold;
+    margin-right: 5px;
+
+  }
+
+  .a-propos {
+    width: 50%;
+    margin: auto;
+  }
+
+  .a-propos h1 {
+    margin: 30px 50px 30px 50px;
+    text-align: center;
+  }
+
+  table {
+    color: white;
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  td,
+  th {
+    padding: 15px;
+    border: 1px solid #a5b4fc;
+  }
+  
+  td {
+    padding: 80px;
+  }
+  
+  h2 {
+    margin-bottom: 80px;
+  }
+  
+  h1,
+  h2 {
+    text-align: center;
+  }
+
+  .portfolio {
+    text-align: center;
+  }
+
+  .portfolio-photos {
+    background-color: white;
+  }
+  
+  .portfolio-photos h2 {
+    color: #242424;
+    margin-bottom: 80px;
+  }
+  
+  .portfolio-paysages {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px 300px;
+    gap: 15px;
+  }
+  
+  .portfolio-portraits {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 15px;
+  }
+  
+  .portfolio-paysages img,
+  .portfolio-portraits img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lien-conteneur-photo {
+    position: relative;
+  }
+  
+  .photo-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+  }
+  
+  .lien-conteneur-photo:hover .photo-hover {
+    display: flex;
+  }
+  
+  .navbar-foot {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    background-color: #f9f8ff;
+  }
+
+  @media screen and (max-width: 960px){
+
+    .accueil-introduction {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .accueil-introduction div {
+      padding-right: 0;
+      text-align: center;
+      order: 2;
+    }
+  
+    .accueil-introduction img {
+      order: 1;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .lien{
+      max-width: auto;
+    }
+  
+    a.lien{
+      height: 80%;
+      width: 80%;
+      display: block;
+    }
+  
+    .accueil-photos {
+      padding: 20px;
+    }
+  
+    .accueil-photos div {
+      flex-direction: column;
+    }
+  
+    .section-contact {
+      padding: 50px 20px;
+    }
+
+    .section-tarifs {
+      display: none;
+    }
+  
+    .form-nom-email {
+      flex-direction: column;
+      gap: 0;
+    }
+
+  .grid-paysages {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .grid-portraits {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .accueil-introduction {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .accueil-introduction div {
+    padding-right: 0;
+    text-align: center;
+    order: 2;
+  }
+
+  .accueil-introduction img {
+    order: 1;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .accueil-photos {
+    padding: 20px;
+  }
+
+  .accueil-photos div {
+    flex-direction: column;
+  }
+
+  .section-contact {
+    padding: 50px 20px;
+  }
+
+  .form-nom-email {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header nav img {
+    margin-bottom: 20px;
+  }
+
+  header,
+  footer {
+    padding: 20px 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  section {
+    padding: 50px 20px 50px 20px;
+  }
+
+  nav a {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  
+}

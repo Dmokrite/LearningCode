@@ -1,0 +1,36 @@
+body {
+    background-color: grey;
+}
+.box {
+    width: 50vh;
+    height: 15vh;
+    margin-top: 35vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(204, 204, 204);
+    padding: 2%;
+    box-shadow: 4px 4px 8px rgba(42, 46, 69, 0.671);
+}
+.box-punchline {
+    height: 80%;
+}
+#punchline {
+    color: rgb(0, 0, 0);
+    height: auto;
+    font-size: 1.2rem;
+}
+.button {
+    width: 100%;
+    text-align: end;
+}
+
+#next {
+    margin-right: 0;
+    border-radius: 5%;
+    width: auto;
+    height: auto;
+    padding: 3%;
+    cursor: pointer;
+    color: white;
+    background-color: grey;
+}

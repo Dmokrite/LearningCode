@@ -1,0 +1,9 @@
+p {
+    background-color: azure;
+    color: rgb(44, 79, 173);
+    width: 350px;
+    height: 130px;
+    /*margin: 100px 0px 60px 40px;*/
+    padding: 20px 30px;
+    margin: 0 auto;
+}

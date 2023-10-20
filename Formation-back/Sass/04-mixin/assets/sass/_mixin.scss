@@ -1,0 +1,21 @@
+@mixin center-block($vertical, $rounded:10px){
+    margin: $vertical auto;
+    border-radius: $rounded;
+    background-color: antiquewhite;
+    width: 50%;
+    padding: 10px;
+}
+
+@mixin button{
+    font: { //ne pas oublié l'espace entre : & {
+        weight: 900;
+        size: 1.5rem;
+    }
+    text-decoration: none;
+    padding: 2px;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    @content;
+}

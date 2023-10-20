@@ -1,0 +1,25 @@
+img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 75px; /*Soit la moitié de la hauteur et de la largeur de l'image*/
+}
+
+div{
+    background-color: aqua;
+    padding: 10px;
+    margin: 20px;
+    display: inline-block; 
+}
+
+p{
+    display: inline-block;
+    margin: 0;
+    width: 375px;
+}
+
+span{
+    color: rgb(255, 255, 255);
+    background-color: rgb(117, 216, 98);
+    text-decoration: underline color(srgb rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0));
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.cdnfonts.com/css/pan-pizza" rel="stylesheet">
+    <script src="datas.js" defer></script>
+    <script src="main.js" defer></script>
+    <title>Liste de Pizzas</title>
+    <style>
+
+    body {
+        font-family: 'Pan Pizza', sans-serif;                  
+    }
+    
+    button {
+        border: none;
+    }
+
+    .header {
+        background-image: url('pizza.jpg');
+        background-size: cover;
+        text-align: center;
+        color: red;
+        padding: 20px;
+        font-size: 55px;
+        height: 80px;
+    }
+
+    .header h2 {
+        margin: 0;
+    }
+    
+    .flex {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pizza-item {
+        font-size: 15px;
+        width: 100%;
+        padding: 5px;
+        height: 100px;
+    }
+
+    .pizza-item h2 {
+        margin: 0;
+        margin-top: 5px;
+        font-size: 35px;
+    }
+
+    .pizza-item button {
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        color: rgb(255, 255, 255);
+        border-radius: 5px;
+    }
+
+    .pizza-ingredients label {
+        display: ruby;
+        margin-right: 5px;
+        color: grey;
+        font-style: italic;
+        font-size: 30px;
+    }
+
+    .popup {
+        width: 25%;
+        height: 50%;
+        border: 1px solid red;
+        display: none;
+        margin-top: 35px;
+        border-radius: 5px;
+        margin-right: 25px;
+    }
+
+    .popup ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .popup h2 {
+        font-size: 35px;
+    }
+
+    #cartPopup {
+        text-align: center;
+    }
+
+    #cartTitle {
+        text-align: center;
+        background-color: red;
+        margin: 0;
+        color: white;
+        height: 40px;
+    }
+
+    .btnBasket button {
+        border-radius: 5px;
+        margin-right: 3px;
+    }
+
+    .btnBasket input {
+        appearance: textfield;
+        -webkit-appearance: textfield;
+        width: 15px;
+        text-align: center;
+        padding: 2px;
+        border: none;
+        background-color: grey;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .btnBasket input::-webkit-inner-spin-button,
+    .btnBasket input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    }
+
+    .btnBasket span {
+        margin-left: 5px;
+        font-size: 30px;
+    }
+
+    .pizzaModified {
+        width: 25%;
+        height: 150px;
+        display: none;
+        flex-direction: column;
+        justify-content: flex-start;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .pizzaModified label {
+        display: inline-block;
+        margin-right: 15px;
+        margin-bottom: 20px;
+        font-style: italic;
+        font-weight: normal;
+        color: grey;
+        font-size: 30px;
+    }
+
+    .pizzaModified button {
+        width: 150px;
+        background-color: red;
+        color: white;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    #pizzaBasket {
+        padding: 10px;
+    }
+
+    #pizzaBasket input, button, span {
+        margin-left: 2px;
+    }
+    
+    #pizzaBasket button {
+        margin-left: 2px;
+        background-color: red;
+        color: white;
+    }
+
+    #pizzaBasket span {
+        font-style: italic;
+        color: grey;
+    }
+
+    #showCustomPizzaButton {
+        background-color: red;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: 10px;
+        margin-top: 30px;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h2>Ma super pizzeria</h2>
+        </div>
+    </header>
+    <main>
+        <div class="flex">
+            <div id="pizzaListContainer" class="container"></div>
+            <div id="cartPopup" class="popup">
+                <h2 id="cartTitle">Mon Panier</h2>
+                <ul id="pizzaBasket"></ul>
+            </div>
+        </div>
+        <button id="showCustomPizzaButton">Ajouter une pizza custom</button>
+        <div id="customPizzaContainer" class="pizzaModified">
+        </div>
+    </main>
+</body>
+</html>

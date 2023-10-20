@@ -1,0 +1,19 @@
+.box{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    background-color: aquamarine;
+}
+
+.container{
+    background-color: rgb(27, 88, 35);
+    width: 1000px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.box-small{
+    align-self: center;
+}

@@ -1,0 +1,31 @@
+body {
+  background-color: #f9f9f9;
+  font-family: "Nunito", sans-serif;
+}
+
+.block {
+  margin: 50px auto;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  width: 50%;
+  padding: 10px;
+}
+.block button {
+  font-weight: 900;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 2px;
+  border: none;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  background-color: aquamarine;
+  color: gold;
+  transition: 0.4s;
+}
+.block button:hover {
+  color: rgb(146, 146, 206);
+  background-color: rgb(33, 71, 71);
+}
+
+/*# sourceMappingURL=style.css.map */

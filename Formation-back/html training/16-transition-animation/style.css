@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+    background-color: beige;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /*animation: .3s infinite alternate adieulesyeux;*/
+}
+
+body>* {
+    margin: 60px;
+}
+
+button{
+    display: block;
+    width: 200px;
+    height: 45px;
+    background-color: blueviolet;
+    border: solid 3px gold;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    transition: background-color ease-in-out .8s, color ease-in .4s 1s;
+}
+
+button:hover{
+    background-color: aquamarine;
+    color: antiquewhite;
+}
+
+.btn2{
+    opacity: 1;
+    transition: all .4s ease;
+}
+
+.btn2:hover{
+    opacity: 0;
+    transform: translateX(400px);
+}
+
+.circle{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: blueviolet;
+    /*animation: .3s infinite alternate adieulesyeux;*/
+}
+
+@keyframes animationstyle{
+    from{
+        background-color: aqua;
+        transform: translateX(0);
+    }to{
+        background-color: antiquewhite;
+        transform: translateX(400px);
+    }
+}
+@keyframes adieulesyeux {
+    0%{
+        background-color: antiquewhite;
+        transform: translateX(0);
+    }
+    25%{
+        background-color: rgb(187, 142, 83);
+        transform: translateX(200px);
+    }
+    50%{
+        background-color: rgb(70, 143, 37);
+        transform: translateX(400px);
+    }
+    75%{
+        background-color: rgb(25, 90, 50);
+        transform: translateX(600px);
+    }
+    100%{
+        background-color: rgb(57, 91, 185);
+        transform: translateX(800px);
+    }
+}

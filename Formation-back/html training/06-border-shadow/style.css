@@ -1,0 +1,59 @@
+img{
+    width: 400px;
+    border-radius: 45%;
+}
+
+h1{
+    text-align: center;
+    background-color: aquamarine;
+    border-top: solid rgb(55, 170, 223) 15px;
+    border-bottom: ridge rgb(55, 170, 223) 20px;
+    border-right: dotted rgb(55, 170, 223) 10px;
+    border-left: none;
+    text-shadow: 5px 5px 5px #6d181898;
+}
+
+div{
+    width: 200px;
+    height: 200px;
+    background-color: aquamarine;
+    border-radius: 5px 10px 20px 30px;
+    margin-bottom: 20px;
+    border: solid 15px black;
+    box-shadow: 5px 5px 5px #6d181898;
+}
+
+.div1{
+    background-image: url(david-castello-lopes.gif);
+    background-size: cover;
+}
+
+.div2{
+    border-style: dotted;
+    background-image: url(163577820062.jpeg);
+    background-size: cover;
+}
+
+.div3{
+    border-style: dashed;
+    background-image: url(david-castello-lopes.gif);
+    background-size: cover;
+}
+
+.div4{
+    border-style: groove;
+    background-image: url(163577820062.jpeg);
+    background-size: cover;
+}
+
+.div5{
+    border-style: ridge;
+    background-image: url(david-castello-lopes.gif);
+    background-size: cover;
+}
+
+.div6{
+    border-style: inset;
+    background-image: url(163577820062.jpeg);
+    background-size: cover;
+}

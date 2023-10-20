@@ -1,0 +1,36 @@
+body{
+    background-color: blueviolet;
+    color: aliceblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1{
+    font-size: 34px;
+}
+.content{
+    display: block;
+}
+
+@media screen and (min-width: 450px) and (max-width: 750px) {
+    body{
+        background-color: blue;
+    }
+    h1{
+        font-size: 50px;
+    }
+    .content{
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 751px) {
+    body{
+        background-color: brown;
+    }
+    h1{
+        font-size: 80px;
+    }
+    .content{
+        display: flex;
+    }
+}

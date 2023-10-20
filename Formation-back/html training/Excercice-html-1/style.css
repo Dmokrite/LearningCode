@@ -1,0 +1,50 @@
+header img{
+    border-radius: 45% 0%;
+    display: block;
+    width: 30%;
+    margin: auto;
+}
+
+header h1{
+    text-align: center;
+}
+  
+.hobby img{
+    border-radius: 500px;
+    width: 10%;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.hobby span{
+    text-align: center;
+}
+
+footer a{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
+}
+
+hr{
+    width: 50%;
+    height: 10px;
+    background-color: black;
+}
+
+.custom{
+    position: relative;
+    padding-left: 15px;
+    
+}
+  
+.custom::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #00ff00;
+}

@@ -1,0 +1,48 @@
+body {
+  background-color: #f9f9f9;
+  font-family: "Nunito", sans-serif;
+}
+
+.btn, .myButton {
+  background-color: aquamarine;
+}
+.sectionBis .btn, .sectionBis .myButton {
+  background-color: rgb(230, 145, 35);
+}
+.sectionBis .btn:hover, .sectionBis .myButton:hover {
+  background-color: aquamarine;
+}
+.sectionBis .btn::before, .sectionBis .myButton::before {
+  content: "Bonjour ";
+}
+
+.myButton {
+  font-size: 30px;
+}
+
+.monBouton, .monBoutonDanger {
+  display: inline-block;
+  border-radius: 9px;
+  padding: 29px;
+  background-color: rgb(21, 95, 70);
+  text-decoration: none;
+  font-size: 40px;
+  font-weight: 600;
+  transition: all 0.3s;
+  color: aquamarine;
+}
+.monBouton:hover, .monBoutonDanger:hover {
+  background-color: rgb(61, 155, 150);
+  color: gold;
+  box-shadow: 5px 5px 5px black;
+}
+
+.monBoutonDanger {
+  background-color: darkred;
+  color: rebeccapurple;
+}
+.monBoutonDanger:hover {
+  color: cyan;
+}
+
+/*# sourceMappingURL=style.css.map */
