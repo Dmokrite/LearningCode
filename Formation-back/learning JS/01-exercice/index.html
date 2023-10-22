@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Liste de Courses</h1>
+    <div class="container">
+        <div class="list">
+        <ul id="productList"></ul>
+        <p>Total : <span id="totalPrice">0</span> </p>
+        </div>
+        <div class="addProduct">
+            <h2>Ajouter un produit :</h2>
+            <div id="existing-error" class="error"></div>
+            <input type="text" id="product-name" placeholder="Nom du produit">
+            <div id="name-error" class="error"></div>
+            <input type="number" id="product-price" placeholder="Prix (€)" min="0">
+            <div id="price-error" class="error"></div>
+            <input type="number" id="product-quantity" placeholder="Quantité" min="0">
+            <div id="quantity-error" class="error"></div>
+            <button id="add-product">Ajouter</button>
+        </div>
+    </div>
+</body>
+</html>

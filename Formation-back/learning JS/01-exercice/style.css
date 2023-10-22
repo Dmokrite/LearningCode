@@ -1,0 +1,125 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: antiquewhite;
+}
+
+h1{
+    color: rgb(226, 128, 128);
+    margin-top: 15px;
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list,
+.addProduct {
+    margin: 10px;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.addProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list ul{
+    display: inline list-item;
+    list-style: none;
+    text-align: center;
+}
+
+.list p{
+    background-color: white;
+    text-align: center;
+    margin-left: 60px;
+    width: max-content;
+}
+
+.addProduct h2{
+    color: rgb(236, 25, 25);
+    padding: 2px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 35px;
+}
+
+#product-name{
+    width: 75%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+#product-price{
+    width: 75%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+#product-quantity{
+    width: 75%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+}
+
+#add-product{
+    width: 75%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    background-color: red;
+}
+
+#name-error{
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#price-error{
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#quantity-error{
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+#existing-error{
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2px;
+}
