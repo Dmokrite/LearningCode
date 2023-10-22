@@ -45,11 +45,6 @@ function addProduct() {
     const quantityError = document.getElementById("quantity-error");
     const existingError = document.getElementById("existing-error");
 
-    nameError.textContent = "";
-    priceError.textContent = "";
-    quantityError.textContent = "";
-    existingError.textContent = "";
-
     if (!name) {
         nameError.textContent = "Veuillez saisir un nom valide pour le produit.";
         return;
