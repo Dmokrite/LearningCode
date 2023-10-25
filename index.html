@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Liste de Courses</title>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <h1 id="list-title"></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="products">
+        </tbody>
+    </table>
+    <div id="total">
+        <p>Total : <span id="total-amount"></span> €</p>
+    </div>
+    <div>
+        <button id="show-product-button">Ajouter un produit</button>
+    </div>
+    <div>
+        <button id="show-category-button">Ajouter une Catégorie</button>
+    </div>
+    <div id="category-div" style="display: none;">
+        <h2>Ajouter une Catégorie</h2>
+        <input type="text" id="category-input" placeholder="Nouvelle Catégorie">
+        <button id="add-category-button">Ajouter</button>
+    </div>
+    <div id="product-div" style="display: none;">
+        <h2>Ajouter un Produit</h2>
+        <input type="text" id="product-name-input" placeholder="Nom du Produit">
+        <input type="number" id="product-price-input" placeholder="Prix" min="0">
+        <input type="number" id="product-quantity-input" placeholder="Quantité" min="0">
+        <h2>Sélectionner une Catégorie</h2>
+        <select id="category-select">
+        </select>
+        <button id="add-product-button">Ajouter le Produit</button>
+    </div>
+</body>
+</html>
