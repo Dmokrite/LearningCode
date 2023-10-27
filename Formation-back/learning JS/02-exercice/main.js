@@ -158,7 +158,7 @@ class ShoppingList {
                 this.updateCategorySelect();
                 this.categoryInput.value = '';
                 errorContainer.innerHTML = '';
-                this.hideCategoryModal(); // Ferme la modal uniquement lorsque l'opération réussit
+                this.hideCategoryModal();
             }
         } else {
             errorContainer.innerHTML = '<p>Le champ catégorie ne peut pas être vide.</p>';
@@ -212,7 +212,7 @@ class ShoppingList {
                 this.productPriceInput.value = '';
                 this.productQuantityInput.value = '';
                 errorContainer.innerHTML = '';
-                this.hideProductModal(); // Ferme la modal uniquement lorsque l'opération réussit
+                this.hideProductModal();
             }
         } else {
             errorContainer.innerHTML = '<p>Veuillez remplir tous les champs correctement.</p>';
