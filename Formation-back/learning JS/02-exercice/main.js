@@ -24,23 +24,23 @@ class ShoppingList {
         this.productNameInput.addEventListener('keydown', this.onProductNameInputKeyDown.bind(this));
     }
 
-    showCategoryModal() {
+    showCategoryModal = () => {
         this.detailsDiv.classList.remove('hidden');
     }
 
-    hideCategoryModal() {
+    hideCategoryModal = () => {
         this.detailsDiv.classList.add('hidden');
     }
 
-    showProductModal() {
+    showProductModal = () => {
         this.productDiv.classList.remove('hidden')
     }
 
-    hideProductModal() {
+    hideProductModal = () => {
         this.productDiv.classList.add('hidden');
     }
 
-    onCategoryInputKeyDown(event) {
+    onCategoryInputKeyDown = (event) => {
         if (event.key === 'Enter') {
             this.addCategory(event);
         }
@@ -52,14 +52,14 @@ class ShoppingList {
         }
     }
 
-    createCell(value, type = 'td') {
+    createCell = (value, type = 'td') => {
         const cell = document.createElement(type);
         cell.innerText = value;
         cell.classList.add('custom-td');
         return cell;
     }
 
-    createDeleteButton(productType, product) {
+    createDeleteButton = (productType, product) => {
         const button = document.createElement('button');
         button.innerText = 'X';
         button.addEventListener('click', () => {
@@ -70,7 +70,7 @@ class ShoppingList {
         return cell;
     }
 
-    createTableRow(productType, product) {
+    createTableRow = (productType, product) => {
         const row = document.createElement('tr');
         row.appendChild(this.createCell(productType));
         row.appendChild(this.createCell(product.product, 'td'));
@@ -81,11 +81,11 @@ class ShoppingList {
         return row;
     }
 
-    sortCategories(originalProducts) {
+    sortCategories = (originalProducts) => {
         return Object.keys(originalProducts).sort((a, b) => a.localeCompare(b));
     }
 
-    deleteProduct(productType, product) {
+    deleteProduct = (productType, product) => {
         const productIndex = this.list.products[productType].indexOf(product);
         if (productIndex !== -1) {
             this.list.products[productType].splice(productIndex, 1);
@@ -93,7 +93,7 @@ class ShoppingList {
         }
     }
 
-    updateTable() {
+    updateTable = () => {
         this.productsTable.innerHTML = '';
         const originalProducts = this.list.products;
         const sortedCategories = this.sortCategories(originalProducts);
@@ -117,16 +117,16 @@ class ShoppingList {
         this.updateCategorySelect();
     }
 
-    calculateTotalAmount() {
+    calculateTotalAmount = () => {
         return this.list.subTotal().reduce((acc, val) => acc + parseFloat(val), 0);
     }
 
-    updateTotalAmount(totalAmount) {
+    updateTotalAmount = (totalAmount) => {
         const totalAmountElement = document.getElementById('total-amount');
         totalAmountElement.textContent = totalAmount.toFixed(2);
     }
 
-    updateCategorySelect() {
+    updateCategorySelect = () => {
         this.categorySelect.innerHTML = '';
 
         this.list.categories.forEach((category) => {
@@ -137,7 +137,7 @@ class ShoppingList {
         });
     }
 
-    toggleCategoryDiv() {
+    toggleCategoryDiv = () => {
         if (this.detailsDiv.classList.contains('hidden')) {
             this.showCategoryModal();
         } else {
@@ -145,7 +145,7 @@ class ShoppingList {
         }
     }
     
-    addCategory(event) {
+    addCategory = (event) => {
         event.preventDefault();
         const newCategory = this.categoryInput.value.trim().toLowerCase();
         const errorContainer = document.getElementById('category-error');
@@ -166,7 +166,7 @@ class ShoppingList {
     }
     
 
-    toggleProductDiv() {
+    toggleProductDiv = () => {
         if (this.productDiv.classList.contains('hidden')) {
             this.showProductModal();
         } else {
@@ -174,7 +174,7 @@ class ShoppingList {
         }
     }
 
-    addProduct(event) {
+    addProduct = (event) => {
         event.preventDefault();
     
         const productName = this.productNameInput.value.trim().toLowerCase();
