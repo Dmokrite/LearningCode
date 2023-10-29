@@ -33,7 +33,7 @@ class ShoppingList {
     }
 
     showProductModal = () => {
-        this.productDiv.classList.remove('hidden')
+        this.productDiv.classList.remove('hidden');
     }
 
     hideProductModal = () => {
@@ -218,7 +218,6 @@ class ShoppingList {
             errorContainer.innerHTML = '<p>Veuillez remplir tous les champs correctement.</p>';
         }
     }
-    
 }
 
 const listData = {
