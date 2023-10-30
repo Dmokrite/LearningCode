@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="/main.js" defer></script>
     <title>Ma liste de courses</title>
   </head>
@@ -33,13 +34,13 @@
     <div class="flex mb-3">
         <button id="show-product-button" class="bg-blue-400 rounded-md w-40 mx-auto p-1 text-white">Ajouter un produit</button>
     </div>
-    <div id="category-div" class="hidden flex w-1/2 mx-auto">
+    <div id="category-div" class="modal-category flex w-1/2 mx-auto">
         <h2 class="bg-blue-400 w-44 p-1 rounded-md text-white text-center mb-1">Ajouter une Catégorie</h2>
         <input type="text" id="category-input" placeholder="Nouvelle Catégorie" class="bg-slate-200 w-44 rounded-md text-center">
+        <p id="category-error" class="text-red-500"></p>
         <button id="add-category-button" class="bg-red-500 rounded-md p-1 text-white">Ajouter</button>
-        <div id="category-error" class="error-message"></div>
     </div>
-    <div id="product-div" class=" hidden w-1/2 mx-auto">
+    <div id="product-div" class="modal-product flex w-1/2 mx-auto">
         <h2 class="bg-blue-400 w-44 p-1 rounded-md text-white text-center mb-2">Ajouter un Produit</h2>
         <input type="text" id="product-name-input" placeholder="Nom du Produit" class="bg-slate-200 w-44 rounded-md text-center">
         <input type="number" id="product-price-input" placeholder="Prix" min="0" class="bg-slate-200 w-44 rounded-md text-center">
@@ -48,7 +49,7 @@
         <select id="category-select" class="p-1 text-center text-white bg-yellow-500 rounded-md">
         </select>
         <button id="add-product-button" class="bg-blue-400 rounded-md p-1 text-center text-white">Ajouter le Produit</button>
-        <div id="product-error" class="error-message"></div>
+        <p id="product-error" class="text-red-500"></p>
     </div>
   </body>
 </html>
