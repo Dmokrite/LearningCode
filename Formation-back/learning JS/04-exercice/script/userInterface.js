@@ -137,7 +137,6 @@ class UI {
 
     updateCategorySelect = () => {
         this.categorySelect.innerHTML = '';
-
         this.list.categories.forEach((category) => {
             const option = document.createElement('option');
             option.value = category;

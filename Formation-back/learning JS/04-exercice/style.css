@@ -17,8 +17,13 @@ td button{
     margin-bottom: 10px;
 }
 
+td button:hover{
+    background-color: rgb(74 222 128);
+    color: black;
+}
+
 #list-title{
-    animation: jello 1.5s infinite;
+    animation: jello 5s;
     transform-origin: center;
 }
 

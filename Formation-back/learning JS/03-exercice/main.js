@@ -208,7 +208,7 @@ function addProduct(e) {
             productNameInput.value = '';
             productPriceInput.value = '';
             productQuantityInput.value = '';
-            errorContainer.textContent = ''; // Efface le message d'erreur en cas de succès
+            errorContainer.textContent = '';
             toggleProductDiv();
         }
     } else {
