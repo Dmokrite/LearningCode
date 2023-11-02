@@ -37,20 +37,22 @@
       <div class="mt-3">
         <button id="show-product-button" class="bg-blue-400 rounded-md w-40 p-1 text-white hover:bg-green-400">Ajouter un produit</button>
       </div>
-      <div id="category-div" class="hidden mt-5">
+      <div id="category-div" class="hidden mt-5 relative">
+        <button id="close-category-div" class="close-button absolute top-2 right-2 text-2xl text-white text-center bg-red-500 rounded-md w-8 h-8 hover:bg-green-400">X</button>
         <h2 class="w-44 p-1 rounded-md text-blue-400 text-center mb-1">Ajouter une Catégorie</h2>
         <input type="text" id="category-input" placeholder="Nouvelle Catégorie" class="w-44 bg-slate-200 rounded-md text-center">
         <button id="add-category-button" class="bg-red-500 rounded-md p-1 text-white hover:bg-green-400">Ajouter</button>
         <div id="category-error" class="error-message text-center"></div>
       </div>
-      <div id="product-div" class="hidden mt-5 rounded-md">
+      <div id="product-div" class="hidden mt-5 rounded-md relative">
+        <button id="close-product-div" class="close-button absolute top-2 right-2 text-2xl text-white text-center bg-red-500 rounded-md w-8 h-8 hover:bg-green-400">X</button>
         <h2 class="w-44 p-1 rounded-md text-blue-400 text-center mb-2">Ajouter un Produit</h2>
         <input type="text" id="product-name-input" placeholder="Nom du Produit" class="w-44 bg-slate-200 rounded-md text-center">
         <input type="number" id="product-price-input" placeholder="Prix" min="0" class="w-44 bg-slate-200 rounded-md text-center">
         <input type="number" id="product-quantity-input" placeholder="Quantité" min="0" class="w-44 bg-slate-200 rounded-md text-center">
         <h2 class="w-52 p-1 rounded-md text-blue-400 text-center mb-2 mt-2">Sélectionner une Catégorie</h2>
         <select id="category-select" class="w-44 p-1 text-center text-white bg-green-400 rounded-md"></select>
-        <button id="add-product-button" class="bg-blue-400 rounded-md p-1 text-center text-white hover:bg-green-400">Ajouter le Produit</button>
+        <button id="add-product-button" class="bg-blue-400 rounded-md p-1 ml-5 text-center text-white hover:bg-green-400">Ajouter le Produit</button>
         <div id="product-error" class="error-message text-center"></div>
       </div>
     </div>

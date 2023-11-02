@@ -21,7 +21,10 @@ class UI {
         this.showProductButton.addEventListener('click', this.toggleProductDiv.bind(this));
         this.addProductButton.addEventListener('click', this.addProduct.bind(this));
         this.productNameInput.addEventListener('keydown', this.onProductNameInputKeyDown.bind(this));
+        document.addEventListener('click', this.handleOutsideClick.bind(this));
         this.initEventListeners();
+        this.setupInputValidation();
+        this.setupCloseButtons();
     }
 
     initEventListeners = () => {
@@ -47,6 +50,35 @@ class UI {
 
     hideProductModal = () => {
         this.productDiv.classList.add('hidden');
+    }
+
+    handleOutsideClick(event) {
+        if (
+            !this.detailsDiv.contains(event.target) &&
+            !this.showCategoryButton.contains(event.target) &&
+            !this.productDiv.contains(event.target) &&
+            !this.showProductButton.contains(event.target)
+        ) {
+            this.hideCategoryModal();
+            this.hideProductModal();
+        }
+    }
+
+    setupCloseButtons() {
+        const closeCategoryDivButton = document.getElementById('close-category-div');
+        const closeProductDivButton = document.getElementById('close-product-div');
+
+        if (closeCategoryDivButton) {
+            closeCategoryDivButton.addEventListener('click', () => {
+                this.hideCategoryModal();
+            });
+        }
+
+        if (closeProductDivButton) {
+            closeProductDivButton.addEventListener('click', () => {
+                this.hideProductModal();
+            });
+        }
     }
 
     onCategoryInputKeyDown = (event) => {
@@ -224,6 +256,18 @@ class UI {
         } else {
             errorContainer.innerHTML = '<p>Veuillez remplir tous les champs correctement.</p>';
         }
+    }
+
+    setupInputValidation() {
+        this.validateInput(this.productNameInput, /[^a-zA-Z]/g);
+        this.validateInput(this.productPriceInput, /[^0-9.]/g);
+        this.validateInput(this.productQuantityInput, /[^0-9]/g); 
+    }
+
+    validateInput(inputElement, regex) {
+        inputElement.addEventListener('input', function () {
+            this.value = this.value.replace(regex, '');
+        });
     }
 }
 
