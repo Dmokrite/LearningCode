@@ -3,14 +3,14 @@ class Table {
         this.products = products;
     }
 
-    createCell(value, type = 'td') {
+    createCell = (value, type = 'td') => {
         const cell = document.createElement(type);
         cell.innerText = value;
         cell.classList.add('custom-td');
         return cell;
     }
 
-    createDeleteButton(productType, product) {
+    createDeleteButton = (productType, product) => {
         const button = document.createElement('button');
         button.innerText = 'X';
         button.addEventListener('click', () => {
@@ -21,7 +21,7 @@ class Table {
         return cell;
     }
 
-    createTableRow(productType, product) {
+    createTableRow = (productType, product) => {
         const row = document.createElement('tr');
         row.appendChild(this.createCell(productType));
         row.appendChild(this.createCell(product.product, 'td'));
@@ -32,11 +32,11 @@ class Table {
         return row;
     }
 
-    sortCategories(originalProducts) {
+    sortCategories = (originalProducts) => {
         return Object.keys(originalProducts).sort((a, b) => a.localeCompare(b));
     }
 
-    deleteProduct(productType, product) {
+    deleteProduct = (productType, product) => {
         const productIndex = this.products[productType].indexOf(product);
         if (productIndex !== -1) {
             this.products[productType].splice(productIndex, 1);
