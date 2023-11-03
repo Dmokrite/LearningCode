@@ -23,7 +23,7 @@ td button:hover{
 }
 
 #list-title{
-    animation: jello 5s;
+    animation: jello 3 10s;
     transform-origin: center;
 }
 

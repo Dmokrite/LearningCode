@@ -49,7 +49,9 @@
         <h2 class="w-44 p-1 rounded-md text-blue-400 text-center mb-2">Ajouter un Produit</h2>
         <input type="text" id="product-name-input" placeholder="Nom du Produit" class="w-44 bg-slate-200 rounded-md text-center">
         <input type="number" id="product-price-input" placeholder="Prix" min="0" class="w-44 bg-slate-200 rounded-md text-center">
+        <span id="productPriceInput-error" class="error-message"></span>
         <input type="number" id="product-quantity-input" placeholder="Quantité" min="0" class="w-44 bg-slate-200 rounded-md text-center">
+        <span id="productQuantityInput-error" class="error-message"></span>
         <h2 class="w-52 p-1 rounded-md text-blue-400 text-center mb-2 mt-2">Sélectionner une Catégorie</h2>
         <select id="category-select" class="w-44 p-1 text-center text-white bg-green-400 rounded-md"></select>
         <button id="add-product-button" class="bg-blue-400 rounded-md p-1 ml-5 text-center text-white hover:bg-green-400">Ajouter le Produit</button>

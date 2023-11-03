@@ -259,7 +259,6 @@ class UI {
     }
 
     setupInputValidation() {
-        this.validateInput(this.productNameInput, /[^a-zA-Z]/g);
         this.validateInput(this.productPriceInput, /[^0-9.]/g);
         this.validateInput(this.productQuantityInput, /[^0-9]/g); 
     }
