@@ -27,6 +27,10 @@ h1 {
     justify-content: center;
 }
 
+.options button{
+    height: max-content;
+}
+
 .option {
     font-size: 18px;
     margin: 5px;
