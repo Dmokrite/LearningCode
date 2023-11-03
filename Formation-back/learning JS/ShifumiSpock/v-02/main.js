@@ -12,10 +12,12 @@ const scoreboard = {
   computer: 0
 };
 
+let playerChoice = ""; // Initialize player's choice
+
 function play(e) {
   console.log("e ", e);
   restart.style.display = "table";
-  const playerChoice = e.target.parentElement.parentElement.id;
+  playerChoice = e.target.parentElement.parentElement.id; // Set the player's choice
   const computerChoice = getComputerChoice();
   const svg = e.target.parentElement;
   const winner = getWinner(playerChoice, computerChoice);
@@ -105,7 +107,7 @@ function showWinner(winner, computerChoice, playerChoice, svg) {
     scoreboard.computer++;
     result.innerHTML = `
     <h1 class="text-lose">Vous avez perdu</h1>
-    <div class "result-lose">
+    <div class="result-lose">
     ${svg.outerHTML}
     </div>
     <p>Ordinateur a choisi ${computerChoice}</p>`;
@@ -115,7 +117,7 @@ function showWinner(winner, computerChoice, playerChoice, svg) {
     <div class="result-draw">
     ${svg.outerHTML}
     </div>
-    <p>Vous avez tous les deux choisi ${computerChoice}</p>`;
+    <p>Vous avez tous les deux choisi ${playerChoice}</p>`;
   }
 
   score.innerHTML = `
@@ -134,6 +136,7 @@ function restartGame() {
   <p>Ordinateur : 0</p>
   `;
   restart.style.display = "none";
+  playerChoice = ""; // Reset player's choice
 }
 
 function clearModal(e) {
