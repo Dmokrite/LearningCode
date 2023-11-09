@@ -1,11 +1,11 @@
 const todoListElement = document.getElementById('todoList');
 fetch('https://jsonplaceholder.typicode.com/todos')
     .then(response => response.json())
-    .then(todos => {
-        console.log('https://jsonplaceholder.typicode.com/todos', todos)
-        todos.map(todo => {
+    .then(results => {
+        console.log('https://jsonplaceholder.typicode.com/todos', results)
+        results.map(result => {
             const listItem = document.createElement('li');
-            listItem.innerHTML = `${todo.userId} - ${todo.id} - ${todo.title} - ${todo.completed === true? 'fait' : 'pas fait'}`;
+            listItem.innerHTML = `${result.userId} - ${result.id} - ${result.title} - ${result.completed === true? 'fait' : 'pas fait'}`;
             todoListElement.appendChild(listItem);
         });
     })
