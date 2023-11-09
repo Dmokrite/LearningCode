@@ -1,0 +1,77 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Pat",
+      "lastname": "le Pirate",
+      "email": "patpirate@yahoo.com",
+      "password": "1234"
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "number": 96,
+      "first_name": "Sebastien",
+      "last_name": "danLeBain",
+      "imageUrl": "https://www.lescrados.com/images/crados/96.jpg",
+      "comment": "Sébastien a eu la baveuse d'or du 10 mètres coulée libre à Séoul."
+    },
+    {
+      "id": 2,
+      "number": 300,
+      "first_name": "Patrick",
+      "last_name": "Mécanique",
+      "imageUrl": "https://www.lescrados.com/images/crados2/300.jpg",
+      "comment": "Patrick a mis le doigt dans l'engrenage.Maintenant, il est coincé. "
+    },
+    {
+      "id": 3,
+      "number": 152,
+      "first_name": "Romain",
+      "last_name": "Touterrain",
+      "imageUrl": "https://www.lescrados.com/images/crados/152.jpg",
+      "comment": "Tout jeune, Romain a eu un accident de poussette. Des années plus tard, il dépasse encore les bornes."
+    },
+    {
+      "id": 4,
+      "number": 79,
+      "first_name": "Pierre",
+      "last_name": "Détaché",
+      "imageUrl": "https://www.lescrados.com/images/crados/79.jpg",
+      "comment": "Si tu t'éclates au cours de gym, va chez Pierre : il a toutes les pièces de rechange."
+    },
+    {
+      "id": 5,
+      "number": 150,
+      "first_name": "Stéphane",
+      "last_name": "Spiderman",
+      "imageUrl": "https://www.lescrados.com/images/crados/150.jpg",
+      "comment": "A force d'aller au coin, Stéphane s'est fait de nouveaux copains."
+    },
+    {
+      "id": 6,
+      "number": 105,
+      "first_name": "Audrey",
+      "last_name": "Dégonflée",
+      "imageUrl": "https://www.lescrados.com/images/crados/105.jpg",
+      "comment": "Quand les filles se crêpent le chignon à la récré, Audrey se dégonfle."
+    },
+    {
+      "id": 7,
+      "number": 29,
+      "first_name": "Christophe",
+      "last_name": "Catastrophe",
+      "imageUrl": "https://www.lescrados.com/images/crados/29.jpg",
+      "comment": "La devise de Christophe : 'Et que ça saute !'."
+    },
+    {
+      "number": "1",
+      "last_name": "Boutton",
+      "first_name": "Gaston",
+      "imageUrl": "https://www.lescrados.com/images/crados/1.jpg",
+      "comment": "adios molos coco",
+      "id": 8
+    }
+  ]
+}
