@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hangman</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Hangman</h1>
+    <div id="word-display"></div>
+    <div id="chances">Remaining chances: 7</div>
+    <div id="guesses">Last wrong letters: </div>
+    <input type="text" id="guess-input" placeholder="Guess a letter" maxlength="1">
+    <button id="guess-button">Guess</button>
+    <img id="hangman-image" src="img/hangman-0.png" alt="Hangman Image">
+    <div id="message"></div>
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <span id="result-modal-close" class="close"></span>
+            <p id="result-modal-message"></p>
+        </div>
+    </div>
+</body>
+</html>
