@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             if (!guessedWord.includes('_')) {
-                displayResultModal('Congratulations! You found the word.', true);
+                displayResultModal('Congratulations ! You found the word !e', true);
             }
         } else {
             incorrectGuesses.push(guess);
