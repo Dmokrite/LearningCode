@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateHangmanImage() {
         const imageIndex = 6 - chancesLeft;
         hangmanImage.src = `img/hangman-${imageIndex}.png`;
+        if (imageIndex < 6) {
+            hangmanImage.style.display = 'block';
+        }
     }
 
     function initializeGame() {
@@ -47,7 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
             displayChances();
             displayGuesses();
 
-            hangmanImage.src = 'img/hangman-0.png';
+            // Masquer l'image au démarrage
+            hangmanImage.style.display = 'none';
+
             guessInput.disabled = false;
             guessInput.value = '';
         });
@@ -84,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
 
             if (!guessedWord.includes('_')) {
-                displayResultModal('Congratulations ! You found the word !e', true);
+                displayResultModal('Congratulations ! You found the word !', true);
             }
         } else {
             incorrectGuesses.push(guess);
@@ -109,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const resultModalMessage = document.getElementById('result-modal-message');
         const resultModalClose = document.getElementById('result-modal-close');
 
-
         resultModalMessage.textContent = message;
         resultModal.style.display = 'block';
 
@@ -128,9 +132,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-
         guessInput.disabled = true;
         gameEnded = true;
+
+        // Afficher l'image en cas d'erreur
+        hangmanImage.style.display = isWin ? 'none' : 'block';
     }
 
     initializeGame();
