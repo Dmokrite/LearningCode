@@ -61,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (!guess.match(/[a-z]/) || guess.length !== 1) {
             messageElement.textContent = "Please enter a valid letter.";
+            setTimeout(() => {
+                messageElement.textContent = '';
+            }, 2000);
             return;
         }
 
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             updateHangmanImage();
 
             if (chancesLeft === 0) {
-                displayResultModal(`Sorry, you've exhausted all your chances. The word was "${wordToGuess}".`, false);
+                displayResultModal(`You lose ! The word was "${wordToGuess}".`, false);
             }
         }
 
