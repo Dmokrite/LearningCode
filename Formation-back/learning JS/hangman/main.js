@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function() {
             displayChances();
             displayGuesses();
 
-            // Masquer l'image au démarrage
             hangmanImage.style.display = 'none';
 
             guessInput.disabled = false;
@@ -135,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
         guessInput.disabled = true;
         gameEnded = true;
 
-        // Afficher l'image en cas d'erreur
         hangmanImage.style.display = isWin ? 'none' : 'block';
     }
 
