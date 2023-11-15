@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
     async function fetchRandomWord() {
         const response = await fetch('https://random-word-api.herokuapp.com/word?number=1');
         const data = await response.json();
-        console.log(data[0]);
         return data[0];
     }
 
