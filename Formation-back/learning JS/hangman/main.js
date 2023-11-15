@@ -107,6 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const resultModalMessage = document.getElementById('result-modal-message');
         const resultModalClose = document.getElementById('result-modal-close');
 
+
         resultModalMessage.textContent = message;
         resultModal.style.display = 'block';
 
@@ -125,22 +126,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-        resultModal.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                resultModal.style.display = 'none';
-                initializeGame();
-            }
-        });
 
         guessInput.disabled = true;
         gameEnded = true;
-        
-        guessInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                resultModal.style.display = 'none';
-                initializeGame();
-            }
-        });
     }
 
     initializeGame();
