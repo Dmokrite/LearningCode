@@ -242,8 +242,6 @@ function addToEventHistory(event) {
 // Appelez la fonction pour ajouter un événement raté à l'historique
 addMissedPokemon();
 
-
-
 function displayErrorMessage(message, success) {
   const errorContainer = document.getElementById('error-container');
   errorContainer.textContent = message;
@@ -318,7 +316,6 @@ function addCaughtPokemon() {
 
 // Appelez la fonction pour ajouter un événement capturé à l'historique
 addCaughtPokemon();
-
 
 getRandomPokemons().then(randomPokemons => {
   displayPokemonTable(randomPokemons);
