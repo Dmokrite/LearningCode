@@ -11,26 +11,22 @@
     <title>Pokémon Random List</title>
 </head>
 <body>
-    <header-component></header-component>
-    <button id="refreshAPI">Rafraichir la liste de Pokémons</button>
-    <div id="error-container" class="error-container"></div>
-    <div id="table"></div>
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Détails du Pokémon</h2>
-        <div id="pokemon-details"></div>
-        <button id="capture-button" onclick="attemptCapture()">Tenter la capture</button>
-      </div>
-      
-    </div>
-    <div id="pokedex-container">
-      <div id="pokedex" style="display: none;"></div>
-      <div id="details-modal-container"></div>
+  <header-component></header-component>
+  <button id="refreshAPI">Rafraichir la liste de Pokémons</button>
+  <div id="error-container" class="error-container"></div>
+  <div id="table"></div>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Détails du Pokémon</h2>
+      <div id="pokemon-details"></div>
+      <button id="capture-button" onclick="attemptCapture()">Tenter la capture</button>
+    </div>   
   </div>
-
-  <!-- Modèles de carte et de modal -->
-  
-    <footer-component></footer-component>
+  <div id="pokedex-container">
+    <div id="pokedex" style="display: none;"></div>
+    <div id="details-modal-container"></div>
+  </div>
+  <footer-component></footer-component>
 </body>
 </html>
