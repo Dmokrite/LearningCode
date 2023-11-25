@@ -21,12 +21,27 @@ nav a {
   margin: 0 10px;
 }
 
+#button {
+  overflow: hidden;
+}
+
 #refreshAPI{
   background-color: greenyellow;
-  margin-left: 92%;
   margin-top: 1%;
-  width: 120px;
   height: 50px;
+  border-radius: 5px;
+  width: 200px;
+  white-space: nowrap; /* Évite le retour à la ligne du texte dans le bouton */
+  animation: slideFromLeft 20s linear infinite; /* Ajoutez l'animation */
+}
+
+@keyframes slideFromLeft {
+  0% {
+      transform: translateX(-100%); /* Commence à gauche de l'écran */
+  }
+  100% {
+      transform: translateX(1000%); /* Termine à droite de l'écran */
+  }
 }
 
 #counter-container {
@@ -52,11 +67,12 @@ nav a {
 .pokemon-table td, .pokemon-table th {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 .pokemon-table th {
-  background-color: #f2f2f2;
+  background-color: #333;
+  color: white;
 }
 
 .pokemon-table tbody tr:nth-child(odd) {
@@ -101,6 +117,28 @@ nav a {
 }
 
 #error-container{
+  text-align: center;
+}
+
+#historique{
+  height: 85vh;
+}
+
+#historique h2{
+  text-align: center;
+}
+
+#caught-pokemons-list{
+  height: 84vh;
+}
+
+#captured-list{
+  list-style-type: none;
+  text-align: center;
+}
+
+#missed-list{
+  list-style-type: none;
   text-align: center;
 }
 

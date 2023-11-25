@@ -9,7 +9,6 @@ let missedCount = 0;
 document.addEventListener('DOMContentLoaded', async () => {
   initialPokemons = await getRandomPokemons();
   remainingPokemons = [...initialPokemons];
-  displayCaughtPokemonsInList();
 
   capturedCount = localStorage.getItem('capturedCount') || 0;
   missedCount = localStorage.getItem('missedCount') || 0;
@@ -138,9 +137,12 @@ window.attemptCapture = function () {
       if (randomNumber > pokemonSpeed / 10) {
         if (!pokemon.caught) {
           displayErrorMessage('Capture réussie !', true);
+          
           pokemon.caught = true;
           updateCounterText();
           addCaughtPokemon();
+          addMissedPokemon();
+          
         }
       } else {
         displayErrorMessage('Capture ratée.', false);
@@ -156,30 +158,91 @@ window.attemptCapture = function () {
   closeModal();
 };
 
+window.attemptCapture = function () {
+  const pokemon = pokemons[selectedPokemonIndex];
 
-function addToCapturedList(pokemon) {
-  const capturedList = document.getElementById('captured-list');
+  if (pokemon.stats) {
+    const pokemonSpeed = pokemon.stats.speed;
 
-  if (capturedList) {
-      const listItem = document.createElement('li');
-      const captureDate = new Date().toLocaleString();
+    if (pokemonSpeed) {
+      const randomNumber = Math.floor(Math.random() * 20) + 1;
 
-      listItem.innerHTML = `Capturé le ${captureDate} - ID: ${pokemon.id} | Nom: ${pokemon.name}`;
-      capturedList.appendChild(listItem);
+      if (randomNumber > pokemonSpeed / 10) {
+        if (!pokemon.caught) {
+          displayErrorMessage('Capture réussie !', true);
+          pokemon.caught = true;
+          updateCounterText();
+          addCaughtPokemon();
+        }
+      } else {
+        displayErrorMessage('Capture ratée.', false);
+        addMissedPokemon(); // Ajouter le Pokémon manqué
+      }
+    } else {
+      displayErrorMessage('Vitesse du Pokémon non disponible.', false);
+    }
+  } else {
+    displayErrorMessage('Statistiques du Pokémon non disponibles.', false);
+    console.log('Données du Pokémon au moment de la capture :', pokemon);
+  }
+
+  closeModal();
+};
+
+function addMissedPokemon() {
+  if (selectedPokemonIndex !== undefined) {
+    const missedPokemon = pokemons[selectedPokemonIndex];
+    const storedMissedPokemons = JSON.parse(localStorage.getItem('missedPokemons')) || [];
+
+    // Vérifier si le Pokémon est déjà dans le tableau
+    const isAlreadyMissed = storedMissedPokemons.some(p => p.id === missedPokemon.id);
+
+    if (!isAlreadyMissed) {
+      // Ajouter le Pokémon au tableau
+      storedMissedPokemons.push(missedPokemon);
+
+      // Enregistrer le tableau mis à jour dans le localStorage
+      localStorage.setItem('missedPokemons', JSON.stringify(storedMissedPokemons));
+
+      // Ajouter l'événement raté dans l'historique
+      addToEventHistory(`Raté(e) le : ${new Date().toLocaleString()} ${missedPokemon.name}`);
+
+      console.log('Pokémon raté :', missedPokemon);
+      console.log('missedPokemons:', storedMissedPokemons);
+
+      missedCount++;
+      updateCounterText();
+    } else {
+      console.warn('Ce Pokémon a déjà été raté.');
+    }
+  } else {
+    console.error('Aucun Pokémon sélectionné.');
   }
 }
 
-function addToMissedList(pokemon) {
-  const missedList = document.getElementById('missed-list');
+// Fonction pour ajouter un événement à l'historique
+function addToEventHistory(event) {
+  const logHistory = JSON.parse(localStorage.getItem('logHistory')) || [];
 
-  if (missedList) {
-      const listItem = document.createElement('li');
-      const missDate = new Date().toLocaleString();
+  // Vérifier si l'événement est déjà dans l'historique
+  const isAlreadyInHistory = logHistory.includes(event);
 
-      listItem.innerHTML = `Raté le ${missDate} - ID: ${pokemon.id} | Nom: ${pokemon.name}`;
-      missedList.appendChild(listItem);
+  if (!isAlreadyInHistory) {
+    // Ajouter l'événement à l'historique
+    logHistory.push(event);
+
+    // Enregistrer l'historique mis à jour dans le localStorage
+    localStorage.setItem('logHistory', JSON.stringify(logHistory));
+
+    console.log('Événement enregistré dans l\'historique :', event);
+  } else {
+    console.warn('Cet événement est déjà dans l\'historique.');
   }
 }
+// Appelez la fonction pour ajouter un événement raté à l'historique
+addMissedPokemon();
+
+
 
 function displayErrorMessage(message, success) {
   const errorContainer = document.getElementById('error-container');
@@ -226,55 +289,39 @@ function updateCounterText() {
 function addCaughtPokemon() {
   if (selectedPokemonIndex !== undefined) {
     const caughtPokemon = pokemons[selectedPokemonIndex];
-    caughtPokemons.push(caughtPokemon);
-    console.log('Pokémon attrapé :', caughtPokemon);
-    console.log('caughtPokemons:', caughtPokemons);
-    updateCounterText();
+    const storedCaughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
+
+    // Vérifier si le Pokémon est déjà dans le tableau
+    const isAlreadyCaught = storedCaughtPokemons.some(p => p.id === caughtPokemon.id);
+
+    if (!isAlreadyCaught) {
+      // Ajouter le Pokémon au tableau
+      storedCaughtPokemons.push(caughtPokemon);
+
+      // Enregistrer le tableau mis à jour dans le localStorage
+      localStorage.setItem('caughtPokemons', JSON.stringify(storedCaughtPokemons));
+
+      // Ajouter l'événement capturé dans l'historique
+      addToEventHistory(`Capturé(e) le : ${new Date().toLocaleString()} ${caughtPokemon.name}`);
+
+      console.log('Pokémon attrapé :', caughtPokemon);
+      console.log('caughtPokemons:', storedCaughtPokemons);
+
+      updateCounterText();
+    } else {
+      console.warn('Ce Pokémon a déjà été capturé.');
+    }
   } else {
     console.error('Aucun Pokémon sélectionné.');
   }
 }
 
+// Appelez la fonction pour ajouter un événement capturé à l'historique
+addCaughtPokemon();
+
+
 getRandomPokemons().then(randomPokemons => {
   displayPokemonTable(randomPokemons);
 });
 
-// Fonction pour afficher les données dans un élément ul
-function displayCaughtPokemonsInList() {
-  const ulElement = document.getElementById('caught-pokemons-list');
 
-  // Vérifiez si l'élément ul existe dans le DOM
-  if (ulElement) {
-    // Effacez le contenu actuel de l'ul avant d'ajouter les nouvelles données
-    ulElement.innerHTML = '';
-
-    // Parcourez le tableau caughtPokemons et créez un élément li pour chaque Pokémon attrapé
-    caughtPokemons.forEach(pokemon => {
-      const liElement = document.createElement('li');
-      liElement.textContent = `ID: ${pokemon.id} | Nom: ${pokemon.name}`;
-      
-      // Ajoutez l'élément li à l'ul
-      ulElement.appendChild(liElement);
-    });
-  } else {
-    console.error("L'élément ul n'a pas été trouvé dans le DOM.");
-  }
-}
-
-// Vous pouvez appeler cette fonction à un moment approprié, par exemple après avoir ajouté un Pokémon
-addCaughtPokemon();
-
-// Appelez la fonction pour afficher les données dans l'ul
-displayCaughtPokemonsInList();
-
-function openDetailsModal(detailsClone) {
-  const detailsModalContainer = document.getElementById('details-modal-container');
-  detailsModalContainer.innerHTML = '';
-  detailsModalContainer.appendChild(detailsClone);
-  detailsModalContainer.style.display = 'block';
-}
-
-function closeDetailsModal() {
-  const detailsModalContainer = document.getElementById('details-modal-container');
-  detailsModalContainer.style.display = 'none';
-}
