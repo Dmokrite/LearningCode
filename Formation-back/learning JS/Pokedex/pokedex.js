@@ -23,3 +23,4 @@ function displayCaughtPokemonsInList() {
   
   // Appelez la fonction pour afficher les données dans l'ul
   displayCaughtPokemonsInList();
+  

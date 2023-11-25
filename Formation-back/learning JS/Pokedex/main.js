@@ -320,5 +320,3 @@ addCaughtPokemon();
 getRandomPokemons().then(randomPokemons => {
   displayPokemonTable(randomPokemons);
 });
-
-
