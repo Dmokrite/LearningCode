@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header-component.css">
     <script src="main.js" defer></script>
-    <script src="./components/header-component.js" defer></script>
+    <script type="module" src="./components/header-component.js" defer></script>
+    <script type="module" src="./components/footer-component.js" defer></script>
     <title>Pokémon Random List</title>
 </head>
 <body>
     <header-component></header-component>
+    <button id="refreshAPI">Rafraichir la liste de Pokémons</button>
+    <div id="error-container" class="error-container"></div>
     <div id="table"></div>
     <div id="modal" class="modal">
       <div class="modal-content">
@@ -18,6 +22,7 @@
         <div id="pokemon-details"></div>
         <button id="capture-button" onclick="attemptCapture()">Tenter la capture</button>
       </div>
+      
     </div>
     <div id="pokedex-container">
       <div id="pokedex" style="display: none;"></div>
@@ -25,35 +30,7 @@
   </div>
 
   <!-- Modèles de carte et de modal -->
-  <template id="pokemon-card-template">
-      <div class="pokemon-card">
-          <img class="thumbnail" alt="Pokemon Thumbnail">
-          <div class="details">
-              <p class="id"></p>
-              <p class="name"></p>
-              <button onclick="viewDetails(event)">Voir les détails</button>
-          </div>
-      </div>
-  </template>
-
-  <template id="pokemon-details-template">
-      <div id="details-modal" class="modal">
-          <div class="modal-content">
-              <span class="close" onclick="closeDetailsModal()">&times;</span>
-              <p class="id"></p>
-              <p class="name"></p>
-              <img class="full-image" alt="Pokemon Full Image">
-              <div class="stats">
-                  <p class="hp"></p>
-                  <p class="attack"></p>
-                  <p class="defense"></p>
-                  <p class="special-attack"></p>
-                  <p class="special-defense"></p>
-                  <p class="speed"></p>
-              </div>
-          </div>
-      </div>
-  </template>
-    <div id="main-footer"></div>
+  
+    <footer-component></footer-component>
 </body>
 </html>

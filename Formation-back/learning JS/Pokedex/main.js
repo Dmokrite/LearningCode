@@ -1,23 +1,48 @@
 const apiUrl = 'https://pokebuildapi.fr/api/v1';
 let selectedPokemonIndex;
-let pokemons;
-let caughtPokemons = []; // Tableau pour stocker les Pokémon attrapés
+let initialPokemons;
+let remainingPokemons;
+let caughtPokemons = [];
+let capturedCount = 0;
+let missedCount = 0;
 
-// Fonction pour obtenir un nombre aléatoire entre min et max
+document.addEventListener('DOMContentLoaded', async () => {
+  initialPokemons = await getRandomPokemons();
+  remainingPokemons = [...initialPokemons];
+  displayCaughtPokemonsInList();
+
+  capturedCount = localStorage.getItem('capturedCount') || 0;
+  missedCount = localStorage.getItem('missedCount') || 0;
+  updateCounterText();
+
+  document.getElementById('refreshAPI').addEventListener('click', async () => {
+    console.log('click');
+    caughtPokemons = [];
+    remainingPokemons = [...initialPokemons];
+    displayPokemonTable(remainingPokemons);
+  });
+
+  displayPokemonTable(remainingPokemons);
+});
+
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Fonction pour obtenir 50 Pokémon de manière aléatoire
 async function getRandomPokemons() {
   const randomPokemons = [];
 
   for (let i = 0; i < 50; i++) {
-    const randomId = getRandomNumber(1, 898); // Il y a actuellement 898 Pokémon
+    const randomId = getRandomNumber(1, 898);
     const pokemonUrl = `${apiUrl}/pokemon/${randomId}`;
 
     try {
       const response = await fetch(pokemonUrl);
+    
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
+      }
+    
       const data = await response.json();
       randomPokemons.push(data);
     } catch (error) {
@@ -32,82 +57,28 @@ function formatTypes(pokemon) {
   const apiTypes = pokemon.apiTypes;
 
   if (apiTypes && apiTypes.length > 0) {
-    // Si le Pokémon a deux types, les joindre avec une virgule
     return apiTypes.length === 2 ? apiTypes.map(type => type.name).join(', ') : apiTypes[0].name;
   } else {
     return '';
   }
 }
 
-// Fonction pour créer et afficher le tableau dans le DOM
 function displayPokemonTable(data) {
-  pokemons = data; // Assigner les données à la variable globale pokemons
+  pokemons = data;
   const tableContainer = document.getElementById('table');
+  if (!tableContainer) {
+    console.error("Erreur : Le conteneur de table n'est pas correctement défini.");
+    return;
+  }
 
-  // Création de la table
   const table = document.createElement('table');
   table.classList.add('pokemon-table');
+  tableContainer.innerHTML = '';
 
-  function openModal(pokemon) {
-    selectedPokemonIndex = pokemons.findIndex(p => p.id === pokemon.id);
-    const modal = document.getElementById('modal');
-    const modalContent = document.getElementById('pokemon-details');
-    modalContent.innerHTML = `<p>ID: ${pokemon.id}</p><p>Nom: ${pokemon.name}</p><p>Types: ${formatTypes(pokemon)}</p>`;
-    modal.style.display = 'block';
-  }
-
-  // Fonction pour fermer la modal
-  window.closeModal = function() {
-    const modal = document.getElementById('modal');
-    modal.style.display = 'none';
-  };
-
-  // Fonction pour tenter la capture
-  window.attemptCapture = function() {
-    const pokemon = pokemons[selectedPokemonIndex];
-  
-    // Vérifier si les statistiques du Pokémon existent
-    if (pokemon.stats) {
-      const pokemonSpeed = pokemon.stats.speed; // Vitesse du Pokémon
-  
-      if (pokemonSpeed) {
-        const randomNumber = Math.floor(Math.random() * 20) + 1; // Lancer du dé 20
-  
-        if (randomNumber > pokemonSpeed / 10) {
-          alert('Capture réussie !');
-          addCaughtPokemon(); // Ajouter le Pokémon attrapé
-        } else {
-          alert('Capture ratée.');
-        }
-      } else {
-        console.error('Vitesse du Pokémon non disponible.');
-      }
-    } else {
-      console.error('Statistiques du Pokémon non disponibles.');
-      console.log('Données du Pokémon au moment de la capture :', pokemon);
-    }
-  
-    closeModal();
-  };
-  // Fonction pour ajouter un Pokémon attrapé
-  function addCaughtPokemon() {
-    if (selectedPokemonIndex !== undefined) {
-      const caughtPokemon = pokemons[selectedPokemonIndex];
-      caughtPokemons.push(caughtPokemon);
-      console.log('Pokémon attrapé :', caughtPokemon);
-    } else {
-      console.error('Aucun Pokémon sélectionné.');
-    }
-  }
-
-  // Création de la ligne d'en-tête (thead)
   const thead = document.createElement('thead');
   const headerRow = document.createElement('tr');
-
-  // Colonnes à afficher dans l'en-tête
   const headerColumns = ['ID', 'Nom', 'Types'];
 
-  // Ajout des colonnes à l'en-tête
   headerColumns.forEach(columnText => {
     const th = document.createElement('th');
     th.textContent = columnText;
@@ -117,25 +88,19 @@ function displayPokemonTable(data) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
-  // Création du corps de la table (tbody)
   const tbody = document.createElement('tbody');
 
-  // Ajout des données dans le corps de la table
   pokemons.forEach(pokemon => {
     const row = document.createElement('tr');
-
-    // Colonnes à afficher dans chaque ligne
     const columns = [pokemon.id, pokemon.name, formatTypes(pokemon)];
 
-    // Ajout des colonnes dans chaque ligne
     columns.forEach((columnText, columnIndex) => {
       const td = document.createElement('td');
       td.textContent = columnText;
 
-      // Ajout de l'événement de clic à chaque cellule sauf pour la colonne des Types
       if (columnIndex !== 2) {
         td.addEventListener('click', () => openModal(pokemon));
-        td.classList.add('clickable'); // Ajoute une classe pour indiquer que la cellule est cliquable
+        td.classList.add('clickable');
       }
 
       row.appendChild(td);
@@ -148,62 +113,168 @@ function displayPokemonTable(data) {
   tableContainer.appendChild(table);
 }
 
-// Appel de la fonction pour obtenir les Pokémon aléatoires
+function openModal(pokemon) {
+  selectedPokemonIndex = pokemons.findIndex(p => p.id === pokemon.id);
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('pokemon-details');
+  modalContent.innerHTML = `<p>ID: ${pokemon.id}</p><p>Nom: ${pokemon.name}</p><p>Types: ${formatTypes(pokemon)}</p>`;
+  modal.style.display = 'block';
+}
+
+window.closeModal = function() {
+  const modal = document.getElementById('modal');
+  modal.style.display = 'none';
+};
+
+window.attemptCapture = function () {
+  const pokemon = pokemons[selectedPokemonIndex];
+
+  if (pokemon.stats) {
+    const pokemonSpeed = pokemon.stats.speed;
+
+    if (pokemonSpeed) {
+      const randomNumber = Math.floor(Math.random() * 20) + 1;
+
+      if (randomNumber > pokemonSpeed / 10) {
+        if (!pokemon.caught) {
+          displayErrorMessage('Capture réussie !', true);
+          pokemon.caught = true;
+          updateCounterText();
+          addCaughtPokemon();
+        }
+      } else {
+        displayErrorMessage('Capture ratée.', false);
+      }
+    } else {
+      displayErrorMessage('Vitesse du Pokémon non disponible.', false);
+    }
+  } else {
+    displayErrorMessage('Statistiques du Pokémon non disponibles.', false);
+    console.log('Données du Pokémon au moment de la capture :', pokemon);
+  }
+
+  closeModal();
+};
+
+
+function addToCapturedList(pokemon) {
+  const capturedList = document.getElementById('captured-list');
+
+  if (capturedList) {
+      const listItem = document.createElement('li');
+      const captureDate = new Date().toLocaleString();
+
+      listItem.innerHTML = `Capturé le ${captureDate} - ID: ${pokemon.id} | Nom: ${pokemon.name}`;
+      capturedList.appendChild(listItem);
+  }
+}
+
+function addToMissedList(pokemon) {
+  const missedList = document.getElementById('missed-list');
+
+  if (missedList) {
+      const listItem = document.createElement('li');
+      const missDate = new Date().toLocaleString();
+
+      listItem.innerHTML = `Raté le ${missDate} - ID: ${pokemon.id} | Nom: ${pokemon.name}`;
+      missedList.appendChild(listItem);
+  }
+}
+
+function displayErrorMessage(message, success) {
+  const errorContainer = document.getElementById('error-container');
+  errorContainer.textContent = message;
+
+  if (success) {
+    errorContainer.style.color = 'green';
+    remainingPokemons.shift();
+
+    if (!pokemons[selectedPokemonIndex].caught) {
+      capturedCount++;
+      pokemons[selectedPokemonIndex].caught = true;
+      updateCounterText();
+    }
+  } else {
+    errorContainer.style.color = 'red';
+    missedCount++;
+    updateCounterText();
+  }
+
+  errorContainer.style.display = 'block';
+
+  setTimeout(() => {
+    errorContainer.textContent = '';
+    errorContainer.style.display = 'none';
+
+    displayPokemonTable(remainingPokemons);
+  }, 3000);
+}
+
+function updateCounterText() {
+  const caughtCountElement = document.getElementById('caught-count');
+  const missedCountElement = document.getElementById('missed-count');
+
+  if (caughtCountElement && missedCountElement) {
+    caughtCountElement.textContent = capturedCount;  // Utilisez la variable globale ici
+    missedCountElement.textContent = missedCount;
+
+    localStorage.setItem('capturedCount', capturedCount);
+    localStorage.setItem('missedCount', missedCount);
+  }
+}
+
+function addCaughtPokemon() {
+  if (selectedPokemonIndex !== undefined) {
+    const caughtPokemon = pokemons[selectedPokemonIndex];
+    caughtPokemons.push(caughtPokemon);
+    console.log('Pokémon attrapé :', caughtPokemon);
+    console.log('caughtPokemons:', caughtPokemons);
+    updateCounterText();
+  } else {
+    console.error('Aucun Pokémon sélectionné.');
+  }
+}
+
 getRandomPokemons().then(randomPokemons => {
-  // Affichage des Pokémon dans le DOM
   displayPokemonTable(randomPokemons);
 });
 
-// Votre code existant...
+// Fonction pour afficher les données dans un élément ul
+function displayCaughtPokemonsInList() {
+  const ulElement = document.getElementById('caught-pokemons-list');
 
-// Fonction pour afficher les Pokémon attrapés dans le Pokédex
-function displayCaughtPokemons() {
-  const pokedexContainer = document.getElementById('pokedex');
-  pokedexContainer.style.display = 'block';
+  // Vérifiez si l'élément ul existe dans le DOM
+  if (ulElement) {
+    // Effacez le contenu actuel de l'ul avant d'ajouter les nouvelles données
+    ulElement.innerHTML = '';
 
-  const pokemonCardTemplate = document.getElementById('pokemon-card-template');
-  const pokemonDetailsTemplate = document.getElementById('pokemon-details-template');
-
-  // Pour chaque Pokémon attrapé, créez une carte et ajoutez-la au Pokédex
-  caughtPokemons.forEach(pokemon => {
-    const cardClone = document.importNode(pokemonCardTemplate.content, true);
-    const detailsClone = document.importNode(pokemonDetailsTemplate.content, true);
-
-    // Remplissez les données de la carte
-    cardClone.querySelector('.id').textContent = `ID: ${pokemon.id}`;
-    cardClone.querySelector('.name').textContent = pokemon.name;
-    cardClone.querySelector('.thumbnail').src = pokemon.sprite;
-
-    // Remplissez les données de la modal des détails
-    detailsClone.querySelector('.id').textContent = `ID: ${pokemon.id}`;
-    detailsClone.querySelector('.name').textContent = pokemon.name;
-    detailsClone.querySelector('.full-image').src = pokemon.image;
-    detailsClone.querySelector('.hp').textContent = `HP: ${pokemon.stats.HP}`;
-    detailsClone.querySelector('.attack').textContent = `Attack: ${pokemon.stats.attack}`;
-    detailsClone.querySelector('.defense').textContent = `Defense: ${pokemon.stats.defense}`;
-    detailsClone.querySelector('.special-attack').textContent = `Special Attack: ${pokemon.stats.special_attack}`;
-    detailsClone.querySelector('.special-defense').textContent = `Special Defense: ${pokemon.stats.special_defense}`;
-    detailsClone.querySelector('.speed').textContent = `Speed: ${pokemon.stats.speed}`;
-
-    // Ajoutez un événement de clic pour afficher les détails du Pokémon
-    cardClone.querySelector('button').addEventListener('click', () => openDetailsModal(detailsClone));
-
-    // Ajoutez la carte au Pokédex
-    pokedexContainer.appendChild(cardClone);
-  });
+    // Parcourez le tableau caughtPokemons et créez un élément li pour chaque Pokémon attrapé
+    caughtPokemons.forEach(pokemon => {
+      const liElement = document.createElement('li');
+      liElement.textContent = `ID: ${pokemon.id} | Nom: ${pokemon.name}`;
+      
+      // Ajoutez l'élément li à l'ul
+      ulElement.appendChild(liElement);
+    });
+  } else {
+    console.error("L'élément ul n'a pas été trouvé dans le DOM.");
+  }
 }
 
-// Fonction pour afficher la modal des détails du Pokémon
+// Vous pouvez appeler cette fonction à un moment approprié, par exemple après avoir ajouté un Pokémon
+addCaughtPokemon();
+
+// Appelez la fonction pour afficher les données dans l'ul
+displayCaughtPokemonsInList();
+
 function openDetailsModal(detailsClone) {
   const detailsModalContainer = document.getElementById('details-modal-container');
-  detailsModalContainer.innerHTML = ''; // Supprimez le contenu précédent
+  detailsModalContainer.innerHTML = '';
   detailsModalContainer.appendChild(detailsClone);
   detailsModalContainer.style.display = 'block';
 }
 
-// Fonction pour fermer la modal des détails du Pokémon
 function closeDetailsModal() {
   const detailsModalContainer = document.getElementById('details-modal-container');
   detailsModalContainer.style.display = 'none';
 }
-
