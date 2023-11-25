@@ -18,12 +18,18 @@ class FooterComponent extends HTMLElement {
 
                 .user-cards {
                     display: flex;
+                    margin-left: 200px;
                 }
-
+                  
                 .user-card {
-                    border: 1px solid #ccc;
-                    margin: 5px;
+                    margin: 0 10px;
                     padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    text-align: center;
+                    background-color: #fff;
+                    color: #333;
+                    margin-left: 250px;
                 }
             </style>
             <div>
