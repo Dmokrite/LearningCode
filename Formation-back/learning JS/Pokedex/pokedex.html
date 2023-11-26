@@ -12,7 +12,21 @@
 </head>
 <body>
     <header-component></header-component>
-    <ul id="caught-pokemons-list"></ul>
+    <div id="caught-pokemons-container"></div>
+    <div id="pokemon-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="pokemon-modal-content">
+                <p id="modal-id"></p>
+                <img id="modal-sprite" alt="Sprite du Pokémon">
+                <p id="modal-name"></p>
+                <p id="modal-type"></p>
+                <p id="modal-stats"></p>
+                <button id="add-to-favorites">Ajouter aux favoris</button>
+                <button id="remove-from-list">Retirer de la liste</button>
+            </div>
+        </div>
+    </div>
     <footer-component></footer-component>
 </body>
 </html>

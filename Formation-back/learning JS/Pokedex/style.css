@@ -11,8 +11,8 @@ header {
   align-items: center;
 }
 
-nav{
-  margin-left: 850px;
+nav {
+  margin: 0 auto; /* Ajoutez cette ligne pour centrer horizontalement */
 }
 
 nav a {
@@ -142,12 +142,89 @@ nav a {
   text-align: center;
 }
 
+/* Style de base pour la carte */
+.pokemon-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 200px;
+
+  /* Centrer le contenu dans la carte */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style pour l'ID du Pokémon */
+.pokemon-card p:first-child {
+  font-weight: bold;
+}
+
+/* Style pour le nom du Pokémon */
+.pokemon-card p:last-child {
+  color: #0077cc;
+}
+
+/* Conteneur pour les cartes */
+#caught-pokemons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Ajustez selon vos préférences */
+}
+
+/* Style pour la nouvelle modal */
+.pokemon-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style pour le contenu de la nouvelle modal */
+.pokemon-modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Centrer le contenu */
+}
+
+/* Style pour le bouton de fermeture de la nouvelle modal */
+.close-pokemon-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-pokemon-modal:hover,
+.close-pokemon-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 footer-component {
   display: flex;
   align-items: center;
   padding: 10px;
   background-color: #333;
   color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 footer-component img {

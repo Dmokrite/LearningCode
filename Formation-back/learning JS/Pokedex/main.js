@@ -116,7 +116,17 @@ function openModal(pokemon) {
   selectedPokemonIndex = pokemons.findIndex(p => p.id === pokemon.id);
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('pokemon-details');
-  modalContent.innerHTML = `<p>ID: ${pokemon.id}</p><p>Nom: ${pokemon.name}</p><p>Types: ${formatTypes(pokemon)}</p>`;
+
+  // Créez un élément img pour afficher l'image du sprite
+  const spriteImage = document.createElement('img');
+  spriteImage.src = pokemon.sprite;
+  spriteImage.alt = `Sprite de ${pokemon.name}`;
+
+  // Ajoutez cet élément img au contenu de la modal
+  modalContent.innerHTML = `<p>ID: ${pokemon.id}</p>`;
+  modalContent.appendChild(spriteImage);
+  modalContent.innerHTML += `<p>Nom: ${pokemon.name}</p><p>Types: ${formatTypes(pokemon)}</p>`;
+
   modal.style.display = 'block';
 }
 
