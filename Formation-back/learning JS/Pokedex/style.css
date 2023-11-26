@@ -209,6 +209,12 @@ nav a {
   overflow-y: auto;
 }
 
+.modalContent button{
+  background-color: red;
+  padding: 2px;
+  color: white;
+}
+
 /* Style pour le contenu de la nouvelle modal */
 .pokemon-modal-content {
   background-color: #fefefe;
