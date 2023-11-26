@@ -1,14 +1,19 @@
+// Attend que le DOM soit complètement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', function() {
+    // Récupération des éléments du DOM
     const containerElement = document.getElementById('caught-pokemons-container');
     const modalElement = document.getElementById('pokemon-modal');
     const modalContentElement = document.getElementById('pokemon-modal-content');
     const closeModalButton = document.querySelector('.close-modal');
 
+    // Récupération des Pokémon attrapés depuis le local storage
     let caughtPokemons = JSON.parse(localStorage.getItem("caughtPokemons")) || [];
 
+    // Fonction pour ouvrir la modal et afficher les détails d'un Pokémon
     function openPokemonModal(pokemon) {
         modalContentElement.innerHTML = ''; // Réinitialise le contenu de la modal
 
+        // Crée et ajoute les éléments HTML pour afficher les détails du Pokémon dans la modal
         const idElement = document.createElement('p');
         idElement.textContent = `ID: ${pokemon.id}`;
         modalContentElement.appendChild(idElement);
@@ -32,51 +37,64 @@ document.addEventListener('DOMContentLoaded', function() {
             const statsElement = document.createElement('div');
             statsElement.innerHTML = '<p>Stats:</p>';
   
-        for (const statName in pokemon.stats) {
-            if (pokemon.stats.hasOwnProperty(statName)) {
-                const statItem = document.createElement('p');
-                statItem.textContent = `${statName}: ${pokemon.stats[statName]}`;
-                statsElement.appendChild(statItem);
+            // Parcourt les statistiques du Pokémon et les ajoute à la modal
+            for (const statName in pokemon.stats) {
+                if (pokemon.stats.hasOwnProperty(statName)) {
+                    const statItem = document.createElement('p');
+                    statItem.textContent = `${statName}: ${pokemon.stats[statName]}`;
+                    statsElement.appendChild(statItem);
+                }
             }
-        }
   
-        modalContentElement.appendChild(statsElement);
+            modalContentElement.appendChild(statsElement);
         }
 
+        const commentTextArea = document.createElement('textarea');
+        commentTextArea.placeholder = 'Laissez un commentaire...';
+        modalContentElement.appendChild(commentTextArea);
+
+        // Crée et ajoute les boutons pour ajouter aux favoris et retirer de la liste
         const addFavoriteButton = document.createElement('button');
         addFavoriteButton.textContent = 'Ajouter aux favoris';
         addFavoriteButton.addEventListener('click', () => {
-            addToFavorites(pokemon);
+            addToFavorites(pokemon, commentTextArea);
         });
         modalContentElement.appendChild(addFavoriteButton);
 
         const removeCaughtButton = document.createElement('button');
         removeCaughtButton.textContent = 'Retirer de la liste';
         removeCaughtButton.addEventListener('click', () => {
-            removeFromCaughtList(pokemon);
+            removeFromCaughtList(pokemon, commentTextArea);
         });
         modalContentElement.appendChild(removeCaughtButton);
 
+        // Affiche la modal
         modalElement.style.display = 'block';
     }
 
+    // Fonction pour afficher les Pokémon attrapés dans des cartes
     function displayCaughtPokemonsInCards() {
+        // Vérifie si l'élément du conteneur existe dans le DOM
         if (!containerElement) {
             console.error("L'élément du conteneur n'a pas été trouvé dans le DOM.");
             return;
         }
 
+        // Réinitialise le contenu du conteneur
         containerElement.innerHTML = '';
 
+        // Vérifie si les données des Pokémon ont été correctement récupérées depuis le stockage local
         if (!caughtPokemons || !Array.isArray(caughtPokemons)) {
             console.error("Les données des Pokémon n'ont pas été correctement récupérées depuis le stockage local.");
             return;
         }
 
+        // Parcourt les Pokémon attrapés et ajoute une carte pour chaque Pokémon
         caughtPokemons.forEach(pokemon => {
             const cardElement = document.createElement('div');
             cardElement.classList.add('pokemon-card');
 
+            // Crée et ajoute les éléments HTML pour afficher les détails du Pokémon dans la carte
             const idElement = document.createElement('p');
             idElement.textContent = `ID: ${pokemon.id}`;
 
@@ -87,44 +105,63 @@ document.addEventListener('DOMContentLoaded', function() {
             const nameElement = document.createElement('p');
             nameElement.textContent = `Nom: ${pokemon.name}`;
 
+            // Ajoute les éléments à la carte
             cardElement.appendChild(idElement);
             cardElement.appendChild(spriteElement);
             cardElement.appendChild(nameElement);
 
+            // Ajoute un événement de clic pour ouvrir la modal lorsque la carte est cliquée
             cardElement.addEventListener('click', () => {
                 openPokemonModal(pokemon);
-             });
+            });
 
+            // Ajoute la carte au conteneur
             containerElement.appendChild(cardElement);
         });
     }
 
+    // Appelle la fonction pour afficher les Pokémon attrapés dans des cartes
     displayCaughtPokemonsInCards();
 
+    // Ajoute un gestionnaire d'événement pour le bouton de fermeture de la modal
     closeModalButton.addEventListener('click', () => {
         modalElement.style.display = 'none';
     });
 
+    // Fonction pour afficher un message d'erreur
     function displayError(message) {
         const errorDiv = document.getElementById('error');
         errorDiv.textContent = message;
     }
 
-    function addToFavorites(pokemon) {
-        // Ajouter le Pokémon aux favoris
+    // Fonction pour ajouter un Pokémon aux favoris
+    function addToFavorites(pokemon, commentTextArea) {
+        // Récupère les Pokémon favoris depuis le local storage ou initialise un tableau vide
         const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
-        favorites.push(pokemon);
+    
+        // Récupère le commentaire du textarea
+        const comment = commentTextArea.value;
+    
+        // Ajoute le Pokémon aux favoris avec le commentaire
+        favorites.push({
+            pokemon: pokemon,
+            comment: comment,
+        });
         localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
-        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris.`);
+    
+        // Affiche une alerte pour informer l'utilisateur
+        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris avec le commentaire : ${comment}`);
     }
     
+    // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
     function removeFromCaughtList(pokemon) {
+        // Vérifie si le Pokédex est plein
         if (caughtPokemons.length >= 30) {
             alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
             return;
         }
     
-        // Ajouter le Pokémon relâché à la liste des Pokémon relâchés
+        // Ajoute le Pokémon relâché à la liste des Pokémon relâchés
         let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
         releasedList.push({
             id: pokemon.id,
@@ -133,11 +170,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
     
-        // Retirer le Pokémon de la liste des Pokémon attrapés
+        // Retire le Pokémon de la liste des Pokémon attrapés
         caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
         localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
+        
+        // Actualise l'affichage des Pokémon attrapés
         displayCaughtPokemonsInCards();
     
+        // Affiche une alerte pour informer l'utilisateur
         alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
     } 
 });

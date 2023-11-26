@@ -1,4 +1,7 @@
+// Définition de l'URL de l'API Pokémon
 const apiUrl = 'https://pokebuildapi.fr/api/v1';
+
+// Variables globales pour suivre l'état du jeu
 let selectedPokemonIndex;
 let initialPokemons;
 let remainingPokemons;
@@ -6,7 +9,9 @@ let caughtPokemons = [];
 let capturedCount = 0;
 let missedCount = 0;
 
+// Événement DOMContentLoaded pour lancer le jeu une fois que le DOM est chargé
 document.addEventListener('DOMContentLoaded', async () => {
+  // Initialisation des Pokémon et mise à jour des compteurs
   initialPokemons = await getRandomPokemons();
   remainingPokemons = [...initialPokemons];
 
@@ -14,20 +19,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   missedCount = localStorage.getItem('missedCount') || 0;
   updateCounterText();
 
+  // Ajout d'un événement de clic pour le bouton de rafraîchissement de l'API
   document.getElementById('refreshAPI').addEventListener('click', async () => {
-    console.log('click');
     caughtPokemons = [];
     remainingPokemons = [...initialPokemons];
     displayPokemonTable(remainingPokemons);
   });
 
+  // Affichage initial de la table des Pokémon
   displayPokemonTable(remainingPokemons);
 });
 
+// Fonction pour obtenir un nombre aléatoire dans une plage donnée
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Fonction asynchrone pour obtenir une liste de Pokémon aléatoires
 async function getRandomPokemons() {
   const randomPokemons = [];
 
@@ -37,11 +45,11 @@ async function getRandomPokemons() {
 
     try {
       const response = await fetch(pokemonUrl);
-    
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
       }
-    
+
       const data = await response.json();
       randomPokemons.push(data);
     } catch (error) {
@@ -52,6 +60,7 @@ async function getRandomPokemons() {
   return randomPokemons;
 }
 
+// Fonction pour formater les types d'un Pokémon
 function formatTypes(pokemon) {
   const apiTypes = pokemon.apiTypes;
 
@@ -62,6 +71,7 @@ function formatTypes(pokemon) {
   }
 }
 
+// Fonction pour afficher la table des Pokémon
 function displayPokemonTable(data) {
   pokemons = data;
   const tableContainer = document.getElementById('table');
@@ -78,6 +88,7 @@ function displayPokemonTable(data) {
   const headerRow = document.createElement('tr');
   const headerColumns = ['ID', 'Nom', 'Types'];
 
+  // Crée les en-têtes de colonnes
   headerColumns.forEach(columnText => {
     const th = document.createElement('th');
     th.textContent = columnText;
@@ -89,14 +100,17 @@ function displayPokemonTable(data) {
 
   const tbody = document.createElement('tbody');
 
+  // Remplit le corps de la table avec les données des Pokémon
   pokemons.forEach(pokemon => {
     const row = document.createElement('tr');
     const columns = [pokemon.id, pokemon.name, formatTypes(pokemon)];
 
+    // Crée les cellules de chaque ligne
     columns.forEach((columnText, columnIndex) => {
       const td = document.createElement('td');
       td.textContent = columnText;
 
+      // Ajoute un événement de clic pour ouvrir la modal (sauf pour la colonne des types)
       if (columnIndex !== 2) {
         td.addEventListener('click', () => openModal(pokemon));
         td.classList.add('clickable');
@@ -112,17 +126,18 @@ function displayPokemonTable(data) {
   tableContainer.appendChild(table);
 }
 
+// Fonction pour ouvrir la modal avec les détails d'un Pokémon
 function openModal(pokemon) {
   selectedPokemonIndex = pokemons.findIndex(p => p.id === pokemon.id);
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('pokemon-details');
 
-  // Créez un élément img pour afficher l'image du sprite
+  // Crée un élément img pour afficher l'image du sprite
   const spriteImage = document.createElement('img');
   spriteImage.src = pokemon.sprite;
   spriteImage.alt = `Sprite de ${pokemon.name}`;
 
-  // Ajoutez cet élément img au contenu de la modal
+  // Ajoute cet élément img au contenu de la modal
   modalContent.innerHTML = `<p>ID: ${pokemon.id}</p>`;
   modalContent.appendChild(spriteImage);
   modalContent.innerHTML += `<p>Nom: ${pokemon.name}</p><p>Types: ${formatTypes(pokemon)}</p>`;
@@ -130,45 +145,14 @@ function openModal(pokemon) {
   modal.style.display = 'block';
 }
 
+// Fonction pour fermer la modal
 window.closeModal = function() {
   const modal = document.getElementById('modal');
   modal.style.display = 'none';
 };
 
-window.attemptCapture = function () {
-  const pokemon = pokemons[selectedPokemonIndex];
-
-  if (pokemon.stats) {
-    const pokemonSpeed = pokemon.stats.speed;
-
-    if (pokemonSpeed) {
-      const randomNumber = Math.floor(Math.random() * 20) + 1;
-
-      if (randomNumber > pokemonSpeed / 10) {
-        if (!pokemon.caught) {
-          displayErrorMessage('Capture réussie !', true);
-          
-          pokemon.caught = true;
-          updateCounterText();
-          addCaughtPokemon();
-          addMissedPokemon();
-          
-        }
-      } else {
-        displayErrorMessage('Capture ratée.', false);
-      }
-    } else {
-      displayErrorMessage('Vitesse du Pokémon non disponible.', false);
-    }
-  } else {
-    displayErrorMessage('Statistiques du Pokémon non disponibles.', false);
-    console.log('Données du Pokémon au moment de la capture :', pokemon);
-  }
-
-  closeModal();
-};
-
-window.attemptCapture = function () {
+// Fonction pour tenter de capturer un Pokémon
+window.attemptCapture = function() {
   const pokemon = pokemons[selectedPokemonIndex];
 
   if (pokemon.stats) {
@@ -199,22 +183,23 @@ window.attemptCapture = function () {
   closeModal();
 };
 
+// Fonction pour ajouter un Pokémon raté
 function addMissedPokemon() {
   if (selectedPokemonIndex !== undefined) {
     const missedPokemon = pokemons[selectedPokemonIndex];
     const storedMissedPokemons = JSON.parse(localStorage.getItem('missedPokemons')) || [];
 
-    // Vérifier si le Pokémon est déjà dans le tableau
+    // Vérifie si le Pokémon est déjà dans le tableau
     const isAlreadyMissed = storedMissedPokemons.some(p => p.id === missedPokemon.id);
 
     if (!isAlreadyMissed) {
-      // Ajouter le Pokémon au tableau
+      // Ajoute le Pokémon au tableau
       storedMissedPokemons.push(missedPokemon);
 
-      // Enregistrer le tableau mis à jour dans le localStorage
+      // Enregistre le tableau mis à jour dans le localStorage
       localStorage.setItem('missedPokemons', JSON.stringify(storedMissedPokemons));
 
-      // Ajouter l'événement raté dans l'historique
+      // Ajoute l'événement raté dans l'historique
       addToEventHistory(`Raté(e) le : ${new Date().toLocaleString()} ${missedPokemon.name}`);
 
       console.log('Pokémon raté :', missedPokemon);
@@ -234,14 +219,14 @@ function addMissedPokemon() {
 function addToEventHistory(event) {
   const logHistory = JSON.parse(localStorage.getItem('logHistory')) || [];
 
-  // Vérifier si l'événement est déjà dans l'historique
+  // Vérifie si l'événement est déjà dans l'historique
   const isAlreadyInHistory = logHistory.includes(event);
 
   if (!isAlreadyInHistory) {
-    // Ajouter l'événement à l'historique
+    // Ajoute l'événement à l'historique
     logHistory.push(event);
 
-    // Enregistrer l'historique mis à jour dans le localStorage
+    // Enregistre l'historique mis à jour dans le localStorage
     localStorage.setItem('logHistory', JSON.stringify(logHistory));
 
     console.log('Événement enregistré dans l\'historique :', event);
@@ -249,9 +234,11 @@ function addToEventHistory(event) {
     console.warn('Cet événement est déjà dans l\'historique.');
   }
 }
-// Appelez la fonction pour ajouter un événement raté à l'historique
+
+// Appelle la fonction pour ajouter un événement raté à l'historique
 addMissedPokemon();
 
+// Fonction pour afficher un message d'erreur dans l'interface utilisateur
 function displayErrorMessage(message, success) {
   const errorContainer = document.getElementById('error-container');
   errorContainer.textContent = message;
@@ -273,14 +260,17 @@ function displayErrorMessage(message, success) {
 
   errorContainer.style.display = 'block';
 
+  // Masque le message d'erreur après 3 secondes
   setTimeout(() => {
     errorContainer.textContent = '';
     errorContainer.style.display = 'none';
 
+    // Actualise la table des Pokémon
     displayPokemonTable(remainingPokemons);
   }, 3000);
 }
 
+// Fonction pour mettre à jour le texte des compteurs
 function updateCounterText() {
   const caughtCountElement = document.getElementById('caught-count');
   const missedCountElement = document.getElementById('missed-count');
@@ -289,27 +279,29 @@ function updateCounterText() {
     caughtCountElement.textContent = capturedCount;
     missedCountElement.textContent = missedCount;
 
+    // Enregistre les compteurs dans le localStorage
     localStorage.setItem('capturedCount', capturedCount);
     localStorage.setItem('missedCount', missedCount);
   }
 }
 
+// Fonction pour ajouter un Pokémon capturé
 function addCaughtPokemon() {
   if (selectedPokemonIndex !== undefined) {
     const caughtPokemon = pokemons[selectedPokemonIndex];
     const storedCaughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
 
-    // Vérifier si le Pokémon est déjà dans le tableau
+    // Vérifie si le Pokémon est déjà dans le tableau
     const isAlreadyCaught = storedCaughtPokemons.some(p => p.id === caughtPokemon.id);
 
     if (!isAlreadyCaught) {
-      // Ajouter le Pokémon au tableau
+      // Ajoute le Pokémon au tableau
       storedCaughtPokemons.push(caughtPokemon);
 
-      // Enregistrer le tableau mis à jour dans le localStorage
+      // Enregistre le tableau mis à jour dans le localStorage
       localStorage.setItem('caughtPokemons', JSON.stringify(storedCaughtPokemons));
 
-      // Ajouter l'événement capturé dans l'historique
+      // Ajoute l'événement capturé dans l'historique
       addToEventHistory(`Capturé(e) le : ${new Date().toLocaleString()} ${caughtPokemon.name}`);
 
       console.log('Pokémon attrapé :', caughtPokemon);
@@ -324,8 +316,10 @@ function addCaughtPokemon() {
   }
 }
 
-// Appelez la fonction pour ajouter un événement capturé à l'historique
+// Appelle la fonction pour ajouter un événement capturé à l'historique
 addCaughtPokemon();
+
+// Obtient des Pokémon aléatoires et affiche la table
 getRandomPokemons().then(randomPokemons => {
   displayPokemonTable(randomPokemons);
 });
