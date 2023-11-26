@@ -138,20 +138,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function addToFavorites(pokemon, commentTextArea) {
         // Récupère les Pokémon favoris depuis le local storage ou initialise un tableau vide
         const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
-    
+
+        // Vérifie si le Pokédex est plein avant d'ajouter un nouveau Pokémon
+        if (caughtPokemons.length >= 30) {
+            alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
+        return;
+        }
+
         // Récupère le commentaire du textarea
         const comment = commentTextArea.value;
-    
+
         // Ajoute le Pokémon aux favoris avec le commentaire
         favorites.push({
             pokemon: pokemon,
             comment: comment,
         });
         localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
-    
+
         // Affiche une alerte pour informer l'utilisateur
         alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris avec le commentaire : ${comment}`);
     }
+
     
     // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
     function removeFromCaughtList(pokemon) {

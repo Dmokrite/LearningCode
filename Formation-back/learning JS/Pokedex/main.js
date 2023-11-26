@@ -205,7 +205,6 @@ function addMissedPokemon() {
       console.log('Pokémon raté :', missedPokemon);
       console.log('missedPokemons:', storedMissedPokemons);
 
-      missedCount++;
       updateCounterText();
     } else {
       console.warn('Ce Pokémon a déjà été raté.');
