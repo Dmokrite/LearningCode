@@ -142,6 +142,11 @@ nav a {
   text-align: center;
 }
 
+#released-list li{
+  text-align: center;
+  list-style-type: none;
+}
+
 /* Style de base pour la carte */
 .pokemon-card {
   border: 1px solid #ccc;

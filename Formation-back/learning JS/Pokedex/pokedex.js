@@ -115,13 +115,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function removeFromCaughtList(pokemon) {
     if (caughtPokemons.length >= 30) {
-      alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
-      return;
+        alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
+        return;
     }
-  
+
+    // Ajouter le Pokémon relâché à la liste des Pokémon relâchés
+    let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
+    releasedList.push({
+        id: pokemon.id,
+        name: pokemon.name,
+        releaseDate: new Date().toLocaleString(),
+    });
+    localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
+
+    // Retirer le Pokémon de la liste des Pokémon attrapés
     caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
     localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
     displayCaughtPokemonsInCards();
+
     alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
-  }
+}
 });

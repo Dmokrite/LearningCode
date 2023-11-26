@@ -1,5 +1,6 @@
 const missedLog = JSON.parse(localStorage.getItem('missedPokemons')) || [];
 const successLog = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
+const releasedLog = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
 
 function addToCapturedList() {
   const capturedList = document.getElementById('captured-list');
@@ -25,5 +26,18 @@ function addToMissedList() {
   }
 }
 
+function addToReleasedList() {
+  const releasedList = document.getElementById('released-list');
+
+  if (releasedList) {
+    releasedLog.forEach((entry, index) => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `Relâché le ${entry.releaseDate} - ${entry.name} (ID: ${entry.id})`;
+      releasedList.appendChild(listItem);
+    });
+  }
+}
+
+addToReleasedList();
 addToCapturedList();
 addToMissedList();
