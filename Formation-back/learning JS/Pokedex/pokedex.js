@@ -1,138 +1,143 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const containerElement = document.getElementById('caught-pokemons-container');
-  const modalElement = document.getElementById('pokemon-modal');
-  const modalContentElement = document.getElementById('pokemon-modal-content');
-  const closeModalButton = document.querySelector('.close-modal');
+    const containerElement = document.getElementById('caught-pokemons-container');
+    const modalElement = document.getElementById('pokemon-modal');
+    const modalContentElement = document.getElementById('pokemon-modal-content');
+    const closeModalButton = document.querySelector('.close-modal');
 
-  let caughtPokemons = JSON.parse(localStorage.getItem("caughtPokemons")) || [];
+    let caughtPokemons = JSON.parse(localStorage.getItem("caughtPokemons")) || [];
 
-  function openPokemonModal(pokemon) {
-    modalContentElement.innerHTML = ''; // Réinitialise le contenu de la modal
+    function openPokemonModal(pokemon) {
+        modalContentElement.innerHTML = ''; // Réinitialise le contenu de la modal
 
-    const idElement = document.createElement('p');
-    idElement.textContent = `ID: ${pokemon.id}`;
-    modalContentElement.appendChild(idElement);
+        const idElement = document.createElement('p');
+        idElement.textContent = `ID: ${pokemon.id}`;
+        modalContentElement.appendChild(idElement);
 
-    const spriteElement = document.createElement('img');
-    spriteElement.src = pokemon.image;
-    spriteElement.alt = `Sprite de ${pokemon.name}`;
-    modalContentElement.appendChild(spriteElement);
+        const spriteElement = document.createElement('img');
+        spriteElement.src = pokemon.image;
+        spriteElement.alt = `Sprite de ${pokemon.name}`;
+        modalContentElement.appendChild(spriteElement);
 
-    const nameElement = document.createElement('p');
-    nameElement.textContent = `Nom: ${pokemon.name}`;
-    modalContentElement.appendChild(nameElement);
+        const nameElement = document.createElement('p');
+        nameElement.textContent = `Nom: ${pokemon.name}`;
+        modalContentElement.appendChild(nameElement);
 
-    if (pokemon.apiTypes && Array.isArray(pokemon.apiTypes)) {
-        const typeElement = document.createElement('p');
-        typeElement.textContent = `Type: ${pokemon.apiTypes.map(type => type.name).join(', ')}`;
-        modalContentElement.appendChild(typeElement);
-    }
+        if (pokemon.apiTypes && Array.isArray(pokemon.apiTypes)) {
+            const typeElement = document.createElement('p');
+            typeElement.textContent = `Type: ${pokemon.apiTypes.map(type => type.name).join(', ')}`;
+            modalContentElement.appendChild(typeElement);
+        }
 
-    if (pokemon.stats && typeof pokemon.stats === 'object') {
-      const statsElement = document.createElement('div');
-      statsElement.innerHTML = '<p>Stats:</p>';
+        if (pokemon.stats && typeof pokemon.stats === 'object') {
+            const statsElement = document.createElement('div');
+            statsElement.innerHTML = '<p>Stats:</p>';
   
-      for (const statName in pokemon.stats) {
-          if (pokemon.stats.hasOwnProperty(statName)) {
-              const statItem = document.createElement('p');
-              statItem.textContent = `${statName}: ${pokemon.stats[statName]}`;
-              statsElement.appendChild(statItem);
-          }
-      }
+        for (const statName in pokemon.stats) {
+            if (pokemon.stats.hasOwnProperty(statName)) {
+                const statItem = document.createElement('p');
+                statItem.textContent = `${statName}: ${pokemon.stats[statName]}`;
+                statsElement.appendChild(statItem);
+            }
+        }
   
-      modalContentElement.appendChild(statsElement);
+        modalContentElement.appendChild(statsElement);
+        }
+
+        const addFavoriteButton = document.createElement('button');
+        addFavoriteButton.textContent = 'Ajouter aux favoris';
+        addFavoriteButton.addEventListener('click', () => {
+            addToFavorites(pokemon);
+        });
+        modalContentElement.appendChild(addFavoriteButton);
+
+        const removeCaughtButton = document.createElement('button');
+        removeCaughtButton.textContent = 'Retirer de la liste';
+        removeCaughtButton.addEventListener('click', () => {
+            removeFromCaughtList(pokemon);
+        });
+        modalContentElement.appendChild(removeCaughtButton);
+
+        modalElement.style.display = 'block';
     }
 
-    const addFavoriteButton = document.createElement('button');
-    addFavoriteButton.textContent = 'Ajouter aux favoris';
-    addFavoriteButton.addEventListener('click', () => {
-        addToFavorites(pokemon);
-    });
-    modalContentElement.appendChild(addFavoriteButton);
+    function displayCaughtPokemonsInCards() {
+        if (!containerElement) {
+            console.error("L'élément du conteneur n'a pas été trouvé dans le DOM.");
+            return;
+        }
 
-    const removeCaughtButton = document.createElement('button');
-    removeCaughtButton.textContent = 'Retirer de la liste';
-    removeCaughtButton.addEventListener('click', () => {
-        removeFromCaughtList(pokemon);
-    });
-    modalContentElement.appendChild(removeCaughtButton);
+        containerElement.innerHTML = '';
 
-    modalElement.style.display = 'block';
-  }
+        if (!caughtPokemons || !Array.isArray(caughtPokemons)) {
+            console.error("Les données des Pokémon n'ont pas été correctement récupérées depuis le stockage local.");
+            return;
+        }
 
-  function displayCaughtPokemonsInCards() {
-      if (!containerElement) {
-          console.error("L'élément du conteneur n'a pas été trouvé dans le DOM.");
-          return;
-      }
+        caughtPokemons.forEach(pokemon => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('pokemon-card');
 
-      containerElement.innerHTML = '';
+            const idElement = document.createElement('p');
+            idElement.textContent = `ID: ${pokemon.id}`;
 
-      if (!caughtPokemons || !Array.isArray(caughtPokemons)) {
-          console.error("Les données des Pokémon n'ont pas été correctement récupérées depuis le stockage local.");
-          return;
-      }
+            const spriteElement = document.createElement('img');
+            spriteElement.src = pokemon.sprite;
+            spriteElement.alt = `Sprite de ${pokemon.name}`;
 
-      caughtPokemons.forEach(pokemon => {
-          const cardElement = document.createElement('div');
-          cardElement.classList.add('pokemon-card');
+            const nameElement = document.createElement('p');
+            nameElement.textContent = `Nom: ${pokemon.name}`;
 
-          const idElement = document.createElement('p');
-          idElement.textContent = `ID: ${pokemon.id}`;
+            cardElement.appendChild(idElement);
+            cardElement.appendChild(spriteElement);
+            cardElement.appendChild(nameElement);
 
-          const spriteElement = document.createElement('img');
-          spriteElement.src = pokemon.sprite;
-          spriteElement.alt = `Sprite de ${pokemon.name}`;
+            cardElement.addEventListener('click', () => {
+                openPokemonModal(pokemon);
+             });
 
-          const nameElement = document.createElement('p');
-          nameElement.textContent = `Nom: ${pokemon.name}`;
-
-          cardElement.appendChild(idElement);
-          cardElement.appendChild(spriteElement);
-          cardElement.appendChild(nameElement);
-
-          cardElement.addEventListener('click', () => {
-              openPokemonModal(pokemon);
-          });
-
-          containerElement.appendChild(cardElement);
-      });
-  }
-
-  displayCaughtPokemonsInCards();
-
-  closeModalButton.addEventListener('click', () => {
-      modalElement.style.display = 'none';
-  });
-
-  function addToFavorites(pokemon) {
-    // Ajouter le Pokémon aux favoris
-    const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
-    favorites.push(pokemon);
-    localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
-    alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris.`);
-  }
-
-  function removeFromCaughtList(pokemon) {
-    if (caughtPokemons.length >= 30) {
-        alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
-        return;
+            containerElement.appendChild(cardElement);
+        });
     }
 
-    // Ajouter le Pokémon relâché à la liste des Pokémon relâchés
-    let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
-    releasedList.push({
-        id: pokemon.id,
-        name: pokemon.name,
-        releaseDate: new Date().toLocaleString(),
-    });
-    localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
-
-    // Retirer le Pokémon de la liste des Pokémon attrapés
-    caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
-    localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
     displayCaughtPokemonsInCards();
 
-    alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
-}
+    closeModalButton.addEventListener('click', () => {
+        modalElement.style.display = 'none';
+    });
+
+    function displayError(message) {
+        const errorDiv = document.getElementById('error');
+        errorDiv.textContent = message;
+    }
+
+    function addToFavorites(pokemon) {
+        // Ajouter le Pokémon aux favoris
+        const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
+        favorites.push(pokemon);
+        localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
+        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris.`);
+    }
+    
+    function removeFromCaughtList(pokemon) {
+        if (caughtPokemons.length >= 30) {
+            alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
+            return;
+        }
+    
+        // Ajouter le Pokémon relâché à la liste des Pokémon relâchés
+        let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
+        releasedList.push({
+            id: pokemon.id,
+            name: pokemon.name,
+            releaseDate: new Date().toLocaleString(),
+        });
+        localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
+    
+        // Retirer le Pokémon de la liste des Pokémon attrapés
+        caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
+        localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
+        displayCaughtPokemonsInCards();
+    
+        alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
+    } 
 });
