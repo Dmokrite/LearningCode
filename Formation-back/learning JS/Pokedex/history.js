@@ -32,7 +32,7 @@ function addToReleasedList() {
   if (releasedList) {
     releasedLog.forEach((entry, index) => {
       const listItem = document.createElement('li');
-      listItem.innerHTML = `Relâché le ${entry.releaseDate} - ${entry.name} (ID: ${entry.id})`;
+      listItem.innerHTML = `Relâché le ${entry.releaseDate} - ${entry.name}`;
       releasedList.appendChild(listItem);
     });
   }
