@@ -195,12 +195,26 @@ nav a {
   justify-content: center;
 }
 
+.modalContent {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  max-width: 80%; /* Ajustez cette valeur en fonction de la largeur désirée */
+  max-height: 80vh; /* Ajustez cette valeur en fonction de la hauteur désirée, en utilisant la vue en hauteur (vh) */
+  overflow-y: auto; /* Ajoutez cela pour permettre le défilement si le contenu dépasse la hauteur spécifiée */
+}
+
 /* Style pour le contenu de la nouvelle modal */
 .pokemon-modal-content {
   background-color: #fefefe;
   padding: 20px;
   border: 1px solid #888;
-  max-width: 600px;
+  max-width: 300px;
   width: 100%;
   text-align: center; /* Centrer le contenu */
 }
