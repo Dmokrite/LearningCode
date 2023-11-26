@@ -1,6 +1,6 @@
 class HeaderComponent extends HTMLElement {
   connectedCallback() {
-    // Ne mettez pas le lien de style ici
+
     this.innerHTML = this.getTemplate();
   }
 

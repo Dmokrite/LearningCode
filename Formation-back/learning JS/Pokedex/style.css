@@ -12,7 +12,7 @@ header {
 }
 
 nav {
-  margin: 0 auto; /* Ajoutez cette ligne pour centrer horizontalement */
+  margin: 0 auto;
 }
 
 nav a {
@@ -31,16 +31,16 @@ nav a {
   height: 50px;
   border-radius: 5px;
   width: 200px;
-  white-space: nowrap; /* Évite le retour à la ligne du texte dans le bouton */
-  animation: slideFromLeft 20s linear infinite; /* Ajoutez l'animation */
+  white-space: nowrap;
+  animation: slideFromLeft 20s linear infinite;
 }
 
 @keyframes slideFromLeft {
   0% {
-      transform: translateX(-100%); /* Commence à gauche de l'écran */
+      transform: translateX(-100%);
   }
   100% {
-      transform: translateX(1000%); /* Termine à droite de l'écran */
+      transform: translateX(1000%);
   }
 }
 
@@ -176,7 +176,7 @@ nav a {
 #caught-pokemons-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Ajustez selon vos préférences */
+  justify-content: space-around;
 }
 
 /* Style pour la nouvelle modal */
@@ -204,9 +204,9 @@ nav a {
   padding: 20px;
   border: 1px solid #888;
   border-radius: 5px;
-  max-width: 80%; /* Ajustez cette valeur en fonction de la largeur désirée */
-  max-height: 80vh; /* Ajustez cette valeur en fonction de la hauteur désirée, en utilisant la vue en hauteur (vh) */
-  overflow-y: auto; /* Ajoutez cela pour permettre le défilement si le contenu dépasse la hauteur spécifiée */
+  max-width: 80%;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 /* Style pour le contenu de la nouvelle modal */

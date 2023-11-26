@@ -186,7 +186,7 @@ window.attemptCapture = function () {
         }
       } else {
         displayErrorMessage('Capture ratée.', false);
-        addMissedPokemon(); // Ajouter le Pokémon manqué
+        addMissedPokemon();
       }
     } else {
       displayErrorMessage('Vitesse du Pokémon non disponible.', false);
@@ -286,7 +286,7 @@ function updateCounterText() {
   const missedCountElement = document.getElementById('missed-count');
 
   if (caughtCountElement && missedCountElement) {
-    caughtCountElement.textContent = capturedCount;  // Utilisez la variable globale ici
+    caughtCountElement.textContent = capturedCount;
     missedCountElement.textContent = missedCount;
 
     localStorage.setItem('capturedCount', capturedCount);
@@ -326,7 +326,6 @@ function addCaughtPokemon() {
 
 // Appelez la fonction pour ajouter un événement capturé à l'historique
 addCaughtPokemon();
-
 getRandomPokemons().then(randomPokemons => {
   displayPokemonTable(randomPokemons);
 });
