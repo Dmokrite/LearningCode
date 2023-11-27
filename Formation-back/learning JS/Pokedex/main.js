@@ -8,6 +8,7 @@ let remainingPokemons;
 let caughtPokemons = [];
 let capturedCount = 0;
 let missedCount = 0;
+let currentPokemonIndex;
 
 // Événement DOMContentLoaded pour lancer le jeu une fois que le DOM est chargé
 document.addEventListener('DOMContentLoaded', async () => {
@@ -128,7 +129,8 @@ function displayPokemonTable(data) {
 
 // Fonction pour ouvrir la modal avec les détails d'un Pokémon
 function openModal(pokemon) {
-  selectedPokemonIndex = pokemons.findIndex(p => p.id === pokemon.id);
+  selectedPokemonIndex = initialPokemons.findIndex(p => p.id === pokemon.id);
+  currentPokemonIndex = remainingPokemons.findIndex(p => p.id === pokemon.id);
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('pokemon-details');
 
@@ -153,7 +155,7 @@ window.closeModal = function() {
 
 // Fonction pour tenter de capturer un Pokémon
 window.attemptCapture = function() {
-  const pokemon = pokemons[selectedPokemonIndex];
+  const pokemon = initialPokemons[selectedPokemonIndex];
 
   if (pokemon.stats) {
     const pokemonSpeed = pokemon.stats.speed;
@@ -186,7 +188,7 @@ window.attemptCapture = function() {
 // Fonction pour ajouter un Pokémon raté
 function addMissedPokemon() {
   if (selectedPokemonIndex !== undefined) {
-    const missedPokemon = pokemons[selectedPokemonIndex];
+    const missedPokemon = initialPokemons[selectedPokemonIndex];
     const storedMissedPokemons = JSON.parse(localStorage.getItem('missedPokemons')) || [];
 
     // Vérifie si le Pokémon est déjà dans le tableau
@@ -244,17 +246,20 @@ function displayErrorMessage(message, success) {
 
   if (success) {
     errorContainer.style.color = 'green';
-    remainingPokemons.shift();
+    remainingPokemons = remainingPokemons.filter(p => p.id !== initialPokemons[selectedPokemonIndex].id);
 
-    if (!pokemons[selectedPokemonIndex].caught) {
+
+    if (!initialPokemons[selectedPokemonIndex].caught) {
       capturedCount++;
-      pokemons[selectedPokemonIndex].caught = true;
+      initialPokemons[selectedPokemonIndex].caught = true;
       updateCounterText();
     }
   } else {
     errorContainer.style.color = 'red';
     missedCount++;
     updateCounterText();
+    // Met à jour currentPokemonIndex pour pointer vers le bon Pokémon raté
+    currentPokemonIndex = remainingPokemons.findIndex(p => p.id === initialPokemons[currentPokemonIndex].id);
   }
 
   errorContainer.style.display = 'block';
@@ -287,7 +292,7 @@ function updateCounterText() {
 // Fonction pour ajouter un Pokémon capturé
 function addCaughtPokemon() {
   if (selectedPokemonIndex !== undefined) {
-    const caughtPokemon = pokemons[selectedPokemonIndex];
+    const caughtPokemon = initialPokemons[selectedPokemonIndex];
     const storedCaughtPokemons = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
 
     // Vérifie si le Pokémon est déjà dans le tableau
