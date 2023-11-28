@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
 
         // Affiche une alerte pour informer l'utilisateur
-        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris : ${comment}`);
+        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris`);
     }
 
     // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
