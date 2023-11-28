@@ -88,14 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
     
-        // Ajouter le Pokémon aux favoris avec le commentaire
+        // Ajouter le Pokémonavec le commentaire
         const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
         const pokemonWithComment = { ...pokemon, comment: comment };
         favorites.push(pokemonWithComment);
         localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
     
         // Affiche une alerte pour informer l'utilisateur
-        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris avec le commentaire : ${comment}`);
+        alert(`Le Pokémon ${pokemon.name} a été ajouté avec le commentaire : ${comment}`);
     
         // Ferme la modal après l'ajout du commentaire
         modalElement.style.display = 'none';
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem("favoritePokemons", JSON.stringify(favorites));
 
         // Affiche une alerte pour informer l'utilisateur
-        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris avec le commentaire : ${comment}`);
+        alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris : ${comment}`);
     }
 
     // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
