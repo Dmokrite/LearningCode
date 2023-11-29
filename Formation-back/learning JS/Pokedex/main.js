@@ -2,10 +2,10 @@
 const apiUrl = 'https://pokebuildapi.fr/api/v1';
 
 // Variables globales pour suivre l'état du jeu
-let selectedPokemonIndex;
 let initialPokemons;
-let remainingPokemons;
+let selectedPokemonIndex;
 let caughtPokemons = [];
+let remainingPokemons;
 let capturedCount = 0;
 let missedCount = 0;
 let currentPokemonIndex;
