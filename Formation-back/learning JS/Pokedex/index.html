@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="header-component.css">
     <script src="main.js" defer></script>
     <script type="module" src="./components/header-component.js" defer></script>
     <script type="module" src="./components/footer-component.js" defer></script>
@@ -13,8 +12,9 @@
 
 <body>
   <header-component></header-component>
+  <audio id="audio" src="./img/generique-pokemon-saison-1.mp3" preload="auto"></audio>
   <div id="button">
-  <button id="refreshAPI">Rafraichir la liste de Pokémons</button>
+  <button id="refreshAPI"><img src="./img/pokemon.png" alt="pokéball"></button>
   </div>
   <div id="error-container" class="error-container"></div>
   <div id="table"></div>
@@ -34,6 +34,15 @@
     <img src="./img/tumblr_5ec7748798a4304713864ee5a8f2a6e2_da57f310_500.webp"></a></p>
   </div>
   <div class="content" id="content"></div>
-  <footer-component></footer-component>
+  <footer-component>
+    <div class="footer">
+      <img class="footer-img" src="./img/pok.jpg" alt="Logo">
+  </div>
+  <div class="user-cards">
+      <div class="user-card">User 1</div>
+      <div class="user-card">User 2</div>
+      <div class="user-card">User 3</div>
+  </div>
+  </footer-component>
 </body>
 </html>

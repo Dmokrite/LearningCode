@@ -12,8 +12,12 @@ let currentPokemonIndex;
 
 // Événement DOMContentLoaded pour lancer le jeu une fois que le DOM est chargé
 document.addEventListener('DOMContentLoaded', async () => {
+
   // Afficher le loader au début du chargement
   document.getElementById('loader').style.display = 'flex';
+
+    // Démarrer la lecture du fichier audio
+    playAudio();
 
   // Initialisation des Pokémon et mise à jour des compteurs
   initialPokemons = await getRandomPokemons();
@@ -21,6 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Cacher le loader une fois le chargement terminé
   document.getElementById('loader').style.display = 'none';
+
+    // Arrêter la lecture du fichier audio
+    stopAudio();
+
   // Afficher le contenu principal
   document.getElementById('content').style.display = 'block';
 
@@ -31,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Ajout d'un événement de clic pour le bouton de rafraîchissement de l'API
   document.getElementById('refreshAPI').addEventListener('click', async () => {
     caughtPokemons = [];
-    remainingPokemons = [...initialPokemons];
+    remainingPokemons = await getRandomPokemons(); // Appel à getRandomPokemons pour obtenir une nouvelle liste
     displayPokemonTable(remainingPokemons);
   });
 
@@ -39,34 +47,57 @@ document.addEventListener('DOMContentLoaded', async () => {
   displayPokemonTable(remainingPokemons);
 });
 
+// Fonction pour démarrer la lecture du fichier audio
+function playAudio() {
+  const audio = document.getElementById('audio');
+  if (audio) {
+    audio.play();
+  }
+}
+
+// Fonction pour arrêter la lecture du fichier audio
+function stopAudio() {
+  const audio = document.getElementById('audio');
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0; // Remet la lecture au début
+  }
+}
+
 // Fonction pour obtenir un nombre aléatoire dans une plage donnée
 function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Fonction asynchrone pour obtenir une liste de Pokémon aléatoires
+// Fonction asynchrone pour obtenir une liste de Pokémon aléatoires avec une limite spécifiée
 async function getRandomPokemons() {
-  const randomPokemons = [];
+  const promises = [];
 
   for (let i = 0; i < 50; i++) {
     const randomId = getRandomNumber(1, 898);
     const pokemonUrl = `${apiUrl}/pokemon/${randomId}`;
 
-    try {
-      const response = await fetch(pokemonUrl);
-
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      randomPokemons.push(data);
-    } catch (error) {
-      console.error(`Erreur lors de la récupération du Pokémon ${randomId}: ${error.message}`);
-    }
+    promises.push(
+      fetch(pokemonUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .catch(error => {
+          console.error(`Erreur lors de la récupération du Pokémon ${randomId}: ${error.message}`);
+        })
+    );
   }
 
-  return randomPokemons;
+  try {
+    const results = await Promise.all(promises);
+    return results.filter(result => result); // Filtrer les résultats non définis en cas d'erreur
+  } catch (error) {
+    console.error(`Erreur lors de la récupération des Pokémon: ${error.message}`);
+    return [];
+  }
 }
 
 // Fonction pour récupèrer les objets dans un tableau qui se trouve dans un objet (Types d'un Pokémon) 
@@ -141,7 +172,7 @@ function openModal(pokemon) {
   currentPokemonIndex = remainingPokemons.findIndex(p => p.id === pokemon.id);
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('pokemon-details');
-
+  
   // Crée un élément img pour afficher l'image du sprite
   const spriteImage = document.createElement('img');
   spriteImage.src = pokemon.sprite;

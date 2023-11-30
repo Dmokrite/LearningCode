@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="header-component.css">
     <script src="pokedex.js" defer></script>
     <script type="module" src="./components/header-component.js" defer></script>
     <script type="module" src="./components/footer-component.js" defer></script>
@@ -16,18 +15,19 @@
     <div id="caught-pokemons-container"></div>
     <div id="pokemon-modal" class="modal">
         <div class="modalContent">
-            <button class="close-modal">&times;</button>
-            <div id="pokemon-modal-content">
-                <p id="modal-id"></p>
-                <img id="modal-sprite" alt="Sprite du Pokémon">
-                <p id="modal-name"></p>
-                <p id="modal-type"></p>
-                <p id="modal-stats"></p>
-                <button id="add-to-favorites">Ajouter aux favoris</button>
-                <button id="remove-from-list">Retirer de la liste</button>
-            </div>
+            <button class="close-modal">X</button>
+            <div id="pokemon-modal-content"></div>
         </div>
     </div>
-    <footer-component></footer-component>
+    <footer-component>
+        <div class="footer">
+            <img class="footer-img" src="./img/pok.jpg" alt="Logo">
+        </div>
+        <div class="user-cards">
+            <div class="user-card">User 1</div>
+            <div class="user-card">User 2</div>
+            <div class="user-card">User 3</div>
+        </div>
+    </footer-component>
 </body>
 </html>

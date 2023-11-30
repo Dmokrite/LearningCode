@@ -49,10 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modalContentElement.appendChild(statsElement);
         }
 
-        const commentTextArea = document.createElement('textarea');
-        commentTextArea.placeholder = 'Laissez un commentaire...';
-        modalContentElement.appendChild(commentTextArea);
-
         // Crée et ajoute les boutons pour ajouter aux favoris, retirer et ajouter un commentaire à un pokémon de la liste
         const addFavoriteButton = document.createElement('button');
         addFavoriteButton.textContent = 'Ajouter aux favoris';
@@ -73,7 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
         addCommentButton.addEventListener('click', () => {
             addCommentToFavorites(pokemon, commentTextArea);
         });
+
+        const commentTextArea = document.createElement('textarea');
+        commentTextArea.placeholder = 'Laissez un commentaire...';
+        
         modalContentElement.appendChild(addCommentButton);
+        modalContentElement.appendChild(commentTextArea);
 
         // Affiche la modal
         modalElement.style.display = 'block';
