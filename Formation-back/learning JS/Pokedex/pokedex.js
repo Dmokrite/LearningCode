@@ -183,6 +183,14 @@ document.addEventListener('DOMContentLoaded', function() {
         alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris`);
     }
 
+    // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
+    function removeFromCaughtList(pokemon) {
+        // Vérifie si le Pokédex est plein
+        if (caughtPokemons.length >= 30) {
+            alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
+            return;
+        }
+    
         // Ajoute le Pokémon relâché à la liste des Pokémon relâchés
         let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
         releasedList.push({
@@ -202,4 +210,4 @@ document.addEventListener('DOMContentLoaded', function() {
         // Affiche une alerte pour informer l'utilisateur
         alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
     } 
-);
+});
