@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 // Récupération des données depuis le local storage
 const missedLog = JSON.parse(localStorage.getItem('missedPokemons')) || [];
 const successLog = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
@@ -44,8 +45,25 @@ function addToReleasedList() {
     });
   }
 }
+// Fonction pour mettre à jour le texte des compteurs
+function updateCounterText() {
+  const caughtCountElement = document.getElementById('caught-count');
+  const missedCountElement = document.getElementById('missed-count');
 
+  // Récupération des données depuis le local storage
+  const capturedCount = JSON.parse(localStorage.getItem('caughtPokemons'))?.length || 0;
+  const missedCount = JSON.parse(localStorage.getItem('missedPokemons'))?.length || 0;
+
+  if (caughtCountElement && missedCountElement) {
+      caughtCountElement.textContent = capturedCount;
+      missedCountElement.textContent = missedCount;
+  }
+}
+updateCounterText();
 // Appel des fonctions pour afficher les listes dans le DOM
 addToReleasedList();
 addToCapturedList();
 addToMissedList();
+
+});
+
