@@ -302,7 +302,6 @@ function displayErrorMessage(message, success) {
 
 
     if (!initialPokemons[selectedPokemonIndex].caught) {
-      capturedCount++;
       initialPokemons[selectedPokemonIndex].caught = true;
       updateCounterText();
     }

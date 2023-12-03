@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Récupération des données depuis le local storage
   const missedLog = JSON.parse(localStorage.getItem('missedPokemons')) || [];
   const successLog = JSON.parse(localStorage.getItem('caughtPokemons')) || [];
   const releasedLog = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
 
-    // Fonction pour ajouter les Pokémon capturés à la liste HTML
+  // Fonction pour ajouter les Pokémon capturés à la liste HTML
   function addToCapturedList() {
     const capturedList = document.getElementById('captured-list');
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-    // Fonction pour ajouter les Pokémon ratés à la liste HTML
+  // Fonction pour ajouter les Pokémon ratés à la liste HTML
   function addToMissedList() {
     const missedList = document.getElementById('missed-list');
 
@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
         releasedList.appendChild(listItem);
       });
     }
+  }
 
   // Fonction pour mettre à jour le texte des compteurs
   function updateCounterText() {
@@ -59,12 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
       missedCountElement.textContent = missedCount;
     }
   }
-  updateCounterText();
-}
 
-// Appel des fonctions pour afficher les listes dans le DOM
-addToReleasedList();
-addToCapturedList();
-addToMissedList();
-updateCounterText();
+  // Appel des fonctions pour afficher les listes dans le DOM
+  addToReleasedList();
+  addToCapturedList();
+  addToMissedList();
+  updateCounterText();
 });
