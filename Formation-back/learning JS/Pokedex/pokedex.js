@@ -189,48 +189,47 @@ document.addEventListener('DOMContentLoaded', function() {
         alert(`Le Pokémon ${pokemon.name} a été ajouté aux favoris`);
     }
 
-// Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
-function removeFromCaughtList(pokemon) {
-    // Vérifie si le Pokédex est plein
-    if (caughtPokemons.length >= 30) {
-        alert("Le Pokédex est plein. Retirez un Pokémon avant d'en supprimer un.");
-        return;
+    // Fonction pour retirer un Pokémon de la liste des Pokémon attrapés
+    function removeFromCaughtList(pokemon) {
+        // Vérifie si le Pokédex est plein
+        if (caughtPokemons.length >= 30) {
+            alert("Le Pokédex est plein. Retirez un Pokémon avant d'en supprimer un.");
+            return;
+        }
+
+        // Ajoute le Pokémon relâché à la liste des Pokémon relâchés
+        let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
+        releasedList.push({
+            id: pokemon.id,
+            name: pokemon.name,
+            releaseDate: new Date().toLocaleString(),
+        });
+        localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
+
+        // Retire le Pokémon de la liste des Pokémon attrapés
+        caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
+        localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
+
+        // Actualise l'affichage des Pokémon attrapés
+        displayCaughtPokemonsInCards();
+
+        // Affiche une alerte pour informer l'utilisateur
+        alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
     }
 
-    // Ajoute le Pokémon relâché à la liste des Pokémon relâchés
-    let releasedList = JSON.parse(localStorage.getItem('releasedPokemons')) || [];
-    releasedList.push({
-        id: pokemon.id,
-        name: pokemon.name,
-        releaseDate: new Date().toLocaleString(),
-    });
-    localStorage.setItem('releasedPokemons', JSON.stringify(releasedList));
+    // Fonction pour mettre à jour le texte des compteurs
+    function updateCounterText() {
+        const caughtCountElement = document.getElementById('caught-count');
+        const missedCountElement = document.getElementById('missed-count');
 
-    // Retire le Pokémon de la liste des Pokémon attrapés
-    caughtPokemons = caughtPokemons.filter(p => p.id !== pokemon.id);
-    localStorage.setItem("caughtPokemons", JSON.stringify(caughtPokemons));
+        // Récupération des données depuis le local storage
+        const capturedCount = JSON.parse(localStorage.getItem('caughtPokemons'))?.length || 0;
+        const missedCount = JSON.parse(localStorage.getItem('missedPokemons'))?.length || 0;
 
-    // Actualise l'affichage des Pokémon attrapés
-    displayCaughtPokemonsInCards();
-
-    // Affiche une alerte pour informer l'utilisateur
-    alert(`Le Pokémon ${pokemon.name} a été retiré de la liste.`);
-}
-
-// Fonction pour mettre à jour le texte des compteurs
-function updateCounterText() {
-    const caughtCountElement = document.getElementById('caught-count');
-    const missedCountElement = document.getElementById('missed-count');
-
-    // Récupération des données depuis le local storage
-    const capturedCount = JSON.parse(localStorage.getItem('caughtPokemons'))?.length || 0;
-    const missedCount = JSON.parse(localStorage.getItem('missedPokemons'))?.length || 0;
-
-    if (caughtCountElement && missedCountElement) {
-        caughtCountElement.textContent = capturedCount;
-        missedCountElement.textContent = missedCount;
+        if (caughtCountElement && missedCountElement) {
+            caughtCountElement.textContent = capturedCount;
+            missedCountElement.textContent = missedCount;
+        }
     }
-}
-updateCounterText();
-
+    updateCounterText();
 });
