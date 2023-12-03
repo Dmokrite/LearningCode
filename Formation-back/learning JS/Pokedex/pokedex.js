@@ -169,12 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Récupère les Pokémon favoris depuis le local storage ou initialise un tableau vide
         const favorites = JSON.parse(localStorage.getItem("favoritePokemons")) || [];
 
-        // Vérifie si le Pokédex est plein avant d'ajouter un nouveau Pokémon
-        if (caughtPokemons.length) {
-            alert("Le Pokédex est plein. Retirez un Pokémon avant d'ajouter un nouveau.");
-        return;
-        }
-
         // Récupère le commentaire du textarea
         const comment = commentTextArea.value;
 
