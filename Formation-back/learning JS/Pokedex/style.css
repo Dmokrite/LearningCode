@@ -21,11 +21,11 @@ nav a{
   margin: 0 10px;
 }
 
-nav a.active {
-  color: #007bff;
+nav a.active{
+  color: rgb(148, 191, 219);
 }
 
-#refreshAPI {
+#refreshAPI{
   /* Ajuster la taille de l'image si nécessaire */
   width: 50px;
   height: 50px;
@@ -125,7 +125,7 @@ nav a.active {
 }
 
 /* Définition de l'animation 'shine' */
-@keyframes shine {
+@keyframes shine{
   from {
     background-color: white; /* Couleur initiale du bouton */
   }
@@ -236,7 +236,7 @@ nav a.active {
   border-radius: 5px;
   border: 2px solid white;
   width: 20px;
-  height: 35px;
+  height: 25px;
   cursor: pointer;
 }
 
@@ -266,9 +266,9 @@ nav a.active {
   border-radius: 5px;
 }
 
-#pokemon-modal-content button {
+#pokemon-modal-content button{
   display: flex;
-  margin: 10px auto; /* Applique une marge automatique pour centrer horizontalement */
+  margin: 10px auto;
   width: 85px;
   height: 40px;
   padding: 2px;
@@ -293,7 +293,7 @@ nav a.active {
   cursor: pointer;
 }
 
-.loader-container {
+.loader-container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -306,12 +306,12 @@ nav a.active {
   z-index: 999;
 }
 
-.loader-container img {
+.loader-container img{
   width: 30%;
   height: 30%;
 }
 
-.content {
+.content{
   display: none;
 }
 
@@ -331,23 +331,16 @@ nav a.active {
   color: black;
 }
 
-footer-component{
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #333;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.history-list li{
+  margin-right: 40px;
 }
 
-.user-cards {
+.user-cards{
   display: flex;
   margin-left: 200px;
 }
 
-.user-card {
+.user-card{
   margin: 0 10px;
   padding: 10px;
   border: 1px solid #ccc;
@@ -358,8 +351,19 @@ footer-component{
   margin-left: 160px;
 }
 
-.footer-img {
+.footer-img{
   height: 70px;
   width: 150px;
   margin-right: 10px;
+}
+
+footer-component{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

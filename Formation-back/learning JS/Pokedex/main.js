@@ -196,29 +196,42 @@ window.closeModal = function() {
 window.attemptCapture = function() {
   const pokemon = initialPokemons[selectedPokemonIndex];
 
-  if (pokemon.stats) {
-    const pokemonSpeed = pokemon.stats.speed;
+  // Vérifie si le nombre de Pokémon capturés est inférieur à 30
+  if (capturedCount <= 30) {
+      if (pokemon.stats) {
+          const pokemonSpeed = pokemon.stats.speed;
 
-    if (pokemonSpeed) {
-      const randomNumber = Math.floor(Math.random() * 20) + 1;
+          if (pokemonSpeed) {
+              const randomNumber = Math.floor(Math.random() * 20) + 1;
 
-      if (randomNumber > pokemonSpeed / 10) {
-        if (!pokemon.caught) {
-          displayErrorMessage('Capture réussie !', true);
-          pokemon.caught = true;
-          updateCounterText();
-          addCaughtPokemon();
-        }
+              if (randomNumber > pokemonSpeed / 10) {
+                  if (!pokemon.caught) {
+                      displayErrorMessage('Capture réussie !', true);
+                      pokemon.caught = true;
+
+                      // Met à jour les compteurs et le Local Storage après la capture réussie
+                      capturedCount++;
+                      updateCounterText();
+                      addCaughtPokemon();
+
+                      // Met à jour les données du Local Storage après la capture réussie
+                      localStorage.setItem('capturedCount', capturedCount);
+                      localStorage.setItem('remainingPokemons', JSON.stringify(remainingPokemons));
+                  }
+              } else {
+                  displayErrorMessage('Capture ratée.', false);
+                  addMissedPokemon();
+              }
+          } else {
+              displayErrorMessage('Vitesse du Pokémon non disponible.', false);
+          }
       } else {
-        displayErrorMessage('Capture ratée.', false);
-        addMissedPokemon();
+          displayErrorMessage('Statistiques du Pokémon non disponibles.', false);
+          console.log('Données du Pokémon au moment de la capture :', pokemon);
       }
-    } else {
-      displayErrorMessage('Vitesse du Pokémon non disponible.', false);
-    }
   } else {
-    displayErrorMessage('Statistiques du Pokémon non disponibles.', false);
-    console.log('Données du Pokémon au moment de la capture :', pokemon);
+      // Affiche un message d'erreur si le Pokédex est plein
+      displayErrorMessage('Le Pokédex est plein. Libérez de l\'espace avant de capturer plus de Pokémon.', false);
   }
 
   closeModal();
