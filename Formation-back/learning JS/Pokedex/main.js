@@ -291,7 +291,6 @@ function addToEventHistory(event) {
 // Appelle la fonction pour ajouter un événement raté à l'historique
 addMissedPokemon();
 
-// Fonction pour afficher un message d'erreur dans l'interface utilisateur
 function displayErrorMessage(message, success) {
   const errorContainer = document.getElementById('error-container');
   errorContainer.textContent = message;
@@ -300,15 +299,19 @@ function displayErrorMessage(message, success) {
     errorContainer.style.color = 'green';
     remainingPokemons = remainingPokemons.filter(p => p.id !== initialPokemons[selectedPokemonIndex].id);
 
-
     if (!initialPokemons[selectedPokemonIndex].caught) {
       initialPokemons[selectedPokemonIndex].caught = true;
       updateCounterText();
     }
   } else {
     errorContainer.style.color = 'red';
+
+    // Retire le Pokémon de la liste initiale
+    initialPokemons = initialPokemons.filter(p => p.id !== initialPokemons[currentPokemonIndex].id);
+
     missedCount++;
     updateCounterText();
+
     // Met à jour currentPokemonIndex pour pointer vers le bon Pokémon raté
     currentPokemonIndex = remainingPokemons.findIndex(p => p.id === initialPokemons[currentPokemonIndex].id);
   }
