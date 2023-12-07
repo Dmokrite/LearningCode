@@ -145,3 +145,9 @@ const nouvelleUtilisateur: User = {
 } 
 
 const userProperty: keyof User = 'firstName'
+
+const partialUser: Partial<User> = {firstName: "Goooo"}
+const record: Record<string, number> = {
+    id: 4,
+    
+}
