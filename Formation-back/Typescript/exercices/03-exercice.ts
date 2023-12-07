@@ -1,4 +1,4 @@
-function extractValueOfKey<T>(arr: T[], key: keyof T) {
+/*function extractValueOfKey<T>(arr: T[], key: keyof T) {
     return arr.map(obj => obj[key]);
 }
 
@@ -21,3 +21,4 @@ const user2: User = {
 //console.log([user]);
 extractValueOfKey([user, user2], "firstName")
 console.log([user, user2]);
+*/

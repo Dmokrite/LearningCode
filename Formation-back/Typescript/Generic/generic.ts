@@ -70,3 +70,23 @@ logResponse<bananaResponse>({
     status: 200,
     value:"banana"
 })
+
+class Stack<T> {
+    values: T[] = [];
+
+    add(newObject: T) {
+        this.values.push(newObject);
+    }
+
+    getArray(): T[] {
+        return this.values;
+    }
+}
+
+const wordStack = new Stack<string>();
+wordStack.add("bye");
+
+const lottoNumbers = new Stack<number>();
+lottoNumbers.add(42);
+
+const copyOfWordStack: string[] = wordStack.getArray();

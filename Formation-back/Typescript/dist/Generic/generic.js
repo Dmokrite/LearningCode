@@ -34,3 +34,19 @@ logResponse({
     status: 200,
     value: "banana"
 });
+class Stack {
+    constructor() {
+        this.values = [];
+    }
+    add(newObject) {
+        this.values.push(newObject);
+    }
+    getArray() {
+        return this.values;
+    }
+}
+const wordStack = new Stack();
+wordStack.add("bye");
+const lottoNumbers = new Stack();
+lottoNumbers.add(42);
+const copyOfWordStack = wordStack.getArray();
