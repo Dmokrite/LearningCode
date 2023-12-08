@@ -1,4 +1,5 @@
-/*function extractValueOfKey<T>(arr: T[], key: keyof T) {
+/*
+function extractValueOfKey<T>(arr: T[], key: keyof T) {
     return arr.map(obj => obj[key]);
 }
 
