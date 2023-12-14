@@ -18,7 +18,7 @@ myTerribleRPG.on('bossFight', () => {
     if (level < 5) {
         console.log('Perdu, vous êtes mort !!');
     }else{
-        console.log(`Bravo tu as battu le boss et tu viens de gagner un niveau, tu es maintenant level : ${level}`);
+        console.log(`Bravo tu as battu le boss et tu viens de gagner un niveau`);
     }
     process.exit();
 })

@@ -17,7 +17,7 @@ async function displayFolder() {
 
         const folders = result.filter(item => item.isDirectory());
 
-        folders.forEach(folder => {
+        folders.map(folder => {
             console.log(folder.name);
         });
     } catch (error) {
