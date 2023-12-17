@@ -55,7 +55,6 @@ const newPost = {
     type: 'post',
     attributes: {
         title: 'Nouveau Post',
-        // Autres attributs du post...
     }
 };
 
@@ -80,7 +79,7 @@ const postIdToUpdate = '37'; // Remplacez par l'ID du post à mettre à jour
 const updatedPost = {
     type: 'post',
     attributes: {
-        title: 'Nouveau Titre', // Nouveau titre du post...
+        title: 'Nouveau Titre',
     }
 };
 
